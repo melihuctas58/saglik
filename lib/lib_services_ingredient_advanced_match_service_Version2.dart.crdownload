@@ -1,0 +1,44 @@
+// ... üst kısım aynı
+  Set<String> _collectTokens(Ingredient ing) {
+    final set = <String>{};
+    void addRaw(String? raw) {
+      if (raw == null) return;
+      final norm = normalizeForSearch(raw);
+      if (norm.isEmpty) return;
+      for (final tk in norm.split(' ')) {
+        if (tk.length < 3) continue;
+        if (_noise.contains(tk)) continue;
+        set.add(tk);
+      }
+    }
+
+    addRaw(ing.core.primaryName);
+    final names = ing.core.names;
+    for (final v in names.values) {
+      if (v is String) addRaw(v);
+      if (v is List) {
+        for (final s in v) {
+          addRaw(s.toString());
+        }
+      }
+    }
+    addRaw(ing.core.category);
+    addRaw(ing.core.subcategory);
+    addRaw(ing.classification.originType);
+    for (final w in ing.usage.whereUsed) addRaw(w);
+    for (final r in ing.usage.commonRoles) addRaw(r);
+    for (final h in ing.health.healthFlags) addRaw(h);
+    // risk_factors: string ya da map olabilir
+    for (final rf in ing.risk.riskFactors) {
+      if (rf is String) addRaw(rf);
+      else if (rf is Map) {
+        addRaw(rf['title']?.toString());
+        addRaw(rf['condition']?.toString());
+        addRaw(rf['mechanism']?.toString());
+        addRaw(rf['evidence']?.toString());
+        addRaw(rf['mitigation']?.toString());
+      }
+    }
+    return set;
+  }
+// ... geri kalanı aynı

@@ -1,0 +1,35 @@
+const String privacyPolicyText = '''
+Gizlilik Politikası
+
+Bu uygulama Google hesabınızla giriş yapmanızı sağlar (Firebase Authentication). Kimliğiniz doğrulandıktan sonra yalnızca şahsınıza ait veriler saklanır:
+
+Toplanan veriler
+- Kimlik: Kullanıcı kimliği (UID), ad/soyad ve e‑posta (Google tarafından sağlanır).
+- Uygulama etkinliği: Taramalarınız (tarih, bulunan malzemeler). İsteğe bağlı geri bildirim/raporlar.
+- Cihaz izinleri: Kamera; yalnızca cihaz üzerinde metin tanıma için kullanılır. Fotoğraflar sunucuya yüklenmez.
+
+Veri kullanımı
+- İçerik iyileştirme ve deneyimi kişiselleştirme (örn. popüler malzemeler).
+- Güvenlik ve kötüye kullanımın önlenmesi (rapor rate limit).
+
+Veri paylaşımı
+- Kişisel verileriniz üçüncü taraflarla paylaşılmaz veya satılmaz.
+
+Saklama ve silme
+- Verilerinizi silmek için uygulama içinden bize ulaşabilirsiniz; makul süre içinde silinir.
+
+İletişim
+- destek@seninmarkan.com
+
+Son güncelleme: 2025-09-06
+''';
+
+const String termsText = '''
+Kullanım Koşulları
+
+- Uygulama, içerikleri en iyi niyetle sunar; otomatik çıkarımlar (yapay zeka/OCR) hata içerebilir. Ürün etiketini ve üretici beyanını esas alın.
+- Hizmeti kötüye kullanmak (spam bildirim vb.) yasaktır; ihlal halinde erişim kısıtlanabilir.
+- Uygulamayı kullanarak Gizlilik Politikası'nı ve bu koşulları kabul etmiş sayılırsınız.
+
+İletişim: destek@seninmarkan.com
+''';

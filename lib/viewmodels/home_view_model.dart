@@ -1,87 +1,48 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart' show rootBundle;
+
 import '../models/ingredient.dart';
-import '../data/ingredient_service.dart';
-import '../services/favorites_service.dart';
 import '../services/ingredient_index_service.dart';
 
-enum HomeStatus { idle, loading, ready, error }
+enum HomeStatus { loading, ready, error }
 
 class HomeViewModel extends ChangeNotifier {
-  final _ingredientService = IngredientService();
-  final _favoritesService = FavoritesService();
   final IngredientIndexService indexService;
 
-  HomeStatus status = HomeStatus.idle;
-  String? error;
+  HomeStatus status = HomeStatus.loading;
   List<Ingredient> all = [];
-  List<Ingredient> highRiskTop = [];
-  List<String> recentScanIds = []; // persist etmek istersen SharedPreferences ile saklayabilirsin
-  bool initialized = false;
 
-  HomeViewModel({required this.indexService});
+  HomeViewModel({required this.indexService}) {
+    _load();
+  }
 
-  Future<void> init() async {
-    if (initialized) return;
+  Future<void> _load() async {
     status = HomeStatus.loading;
     notifyListeners();
     try {
-      await _favoritesService.init();
-      all = await _ingredientService.loadAll();
+      // Önce yeni dosya
+      final raw = await rootBundle.loadString('assets/malzemeler.json');
+      final List<dynamic> arr = jsonDecode(raw) as List<dynamic>;
+      all = arr.map((j) => Ingredient.fromJson(j as Map<String, dynamic>)).toList();
       indexService.buildIndex(all);
-      highRiskTop = _computeHighRisk();
       status = HomeStatus.ready;
-      initialized = true;
+      notifyListeners();
     } catch (e) {
-      error = e.toString();
-      status = HomeStatus.error;
-    }
-    notifyListeners();
-  }
-
-  List<Ingredient> _computeHighRisk() {
-    final copy = List<Ingredient>.from(all);
-    copy.sort((a, b) {
-      int levelRank(String l) {
-        switch (l) {
-          case 'red':
-            return 3;
-          case 'yellow':
-            return 2;
-          case 'green':
-            return 1;
-          default:
-            return 0;
-        }
+      // Hata durumunda eski dosyaya fallback
+      debugPrint('malzemeler.json parse hatası: $e — malzemelereski.json deneniyor...');
+      try {
+        final rawOld = await rootBundle.loadString('assets/malzemelereski.json');
+        final List<dynamic> arrOld = jsonDecode(rawOld) as List<dynamic>;
+        all = arrOld.map((j) => Ingredient.fromJson(j as Map<String, dynamic>)).toList();
+        indexService.buildIndex(all);
+        status = HomeStatus.ready;
+        notifyListeners();
+      } catch (e2) {
+        debugPrint('malzemelereski.json da yüklenemedi: $e2');
+        status = HomeStatus.error;
+        notifyListeners();
       }
-      final lr = levelRank(b.risk.riskLevel).compareTo(levelRank(a.risk.riskLevel));
-      if (lr != 0) return lr;
-      return b.risk.riskScore.compareTo(a.risk.riskScore);
-    });
-    return copy.take(5).toList();
-  }
-
-  List<Ingredient> get favorites => all
-      .where((i) => _favoritesService.isFavorite(i.id))
-      .toList();
-
-  bool isFavorite(String id) => _favoritesService.isFavorite(id);
-
-  Future<void> toggleFavorite(String id) async {
-    await _favoritesService.toggle(id);
-    notifyListeners();
-  }
-
-  void addRecentScan(List<Ingredient> matched) {
-    for (final ing in matched) {
-      recentScanIds.remove(ing.id);
-      recentScanIds.insert(0, ing.id);
     }
-    if (recentScanIds.length > 10) {
-      recentScanIds = recentScanIds.take(10).toList();
-    }
-    notifyListeners();
   }
-
-  List<Ingredient> get recentScans =>
-      recentScanIds.map((id) => all.firstWhere((i) => i.id == id, orElse: () => all.first)).toList();
 }

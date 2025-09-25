@@ -1,501 +1,259 @@
-import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import '../models/ingredient.dart';
+import '../widgets/app_logo.dart';
+import 'ingredient_detail_screen.dart';
+import 'search_screen.dart';
+import '../utils/risk_colors.dart';
+import '../utils/risk_labels.dart';
 
-import '../services/popularity_service.dart';
-import '../utils/category_helper.dart';
-
-class HomeScreen extends StatefulWidget {
-  final List<dynamic> allIngredients;
-  final void Function(dynamic) onOpenDetail;
-  final VoidCallback onOpenSettings;
-  final VoidCallback onTapScan;
+class HomeScreen extends StatelessWidget {
+  final List<Ingredient> allIngredients;
   const HomeScreen({
     super.key,
     required this.allIngredients,
-    required this.onOpenDetail,
-    required this.onOpenSettings,
-    required this.onTapScan,
   });
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-enum SortMode { popularity, az, za }
-
-class _HomeScreenState extends State<HomeScreen> {
-  final TextEditingController _searchC = TextEditingController();
-  Timer? _deb;
-  String _query = '';
-  IngredientCategory? _selectedCat;
-  SortMode _sort = SortMode.popularity;
-
-  @override
-  void initState() {
-    super.initState();
-    _searchC.addListener(_onSearch);
-  }
-
-  @override
-  void dispose() {
-    _searchC.removeListener(_onSearch);
-    _searchC.dispose();
-    _deb?.cancel();
-    super.dispose();
-  }
-
-  void _onSearch() {
-    _deb?.cancel();
-    _deb = Timer(const Duration(milliseconds: 250), () {
-      setState(() => _query = _searchC.text.trim().toLowerCase());
-    });
-  }
-
-  List<dynamic> _filtered() {
-    var list = List<dynamic>.from(widget.allIngredients);
-
-    if (_selectedCat != null) {
-      list = list.where((ing) => CategoryHelper.match(ing, _selectedCat!)).toList();
-    }
-
-    if (_query.isNotEmpty) {
-      list = list.where((ing) {
-        final name = (ing.core?.primaryName ?? '').toString().toLowerCase();
-        if (name.contains(_query)) return true;
-        final namesMap = ing.core?.names;
-        if (namesMap is Map) {
-          bool hit = false;
-          namesMap.forEach((_, v) {
-            if (hit) return;
-            if (v is String && v.toLowerCase().contains(_query)) hit = true;
-            else if (v is List) {
-              for (final s in v) {
-                if (s.toString().toLowerCase().contains(_query)) {
-                  hit = true;
-                  break;
-                }
-              }
-            }
-          });
-          if (hit) return true;
-        }
-        return false;
-      }).toList();
-    }
-
-    switch (_sort) {
-      case SortMode.popularity:
-        list.sort((a, b) =>
-            PopularityService.instance
-                .count(b, keyFn: (x) => (x.core?.primaryName ?? '').toString().toLowerCase())
-                .compareTo(
-                    PopularityService.instance.count(a, keyFn: (x) => (x.core?.primaryName ?? '').toString().toLowerCase())));
-        break;
-      case SortMode.az:
-        list.sort((a, b) => (a.core?.primaryName ?? '')
-            .toString()
-            .compareTo((b.core?.primaryName ?? '').toString()));
-        break;
-      case SortMode.za:
-        list.sort((a, b) => (b.core?.primaryName ?? '')
-            .toString()
-            .compareTo((a.core?.primaryName ?? '').toString()));
-        break;
-    }
-    return list;
-  }
-
-  void _openSortSheet() {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (_) => _SortSheet(
-        current: _sort,
-        onSelect: (m) {
-          setState(() => _sort = m);
-          Navigator.pop(context);
-        },
-        onReset: () {
-          setState(() {
-            _sort = SortMode.popularity;
-            _selectedCat = null;
-            _searchC.clear();
-            _query = '';
-          });
-          Navigator.pop(context);
-        },
-      ),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final list = _filtered();
-    final top = PopularityService.instance.topN(
-      widget.allIngredients,
-      5,
-      keyFn: (x) => (x.core?.primaryName ?? '').toString().toLowerCase(),
-    );
+    final theme = Theme.of(context).colorScheme;
 
-    return SafeArea(
-      child: Column(
-        children: [
-          _header(),
-          _searchBar(),
-          _categoryBar(),
-          if (top.isNotEmpty) _popularSection(top),
-          Expanded(
-            child: list.isEmpty
-                ? const Center(child: Text('Sonuç yok'))
-                : ListView.builder(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                    itemCount: list.length,
-                    itemBuilder: (_, i) {
-                      final ing = list[i];
-                      return _rowItem(ing);
-                    },
-                  ),
-          ),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        titleSpacing: 0,
+        title: const Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: AppLogo(height: 60), // Logo büyütüldü
+        ),
+        actions: const [], // Sağ üstte ayarlar kaldırıldı
       ),
+      body: _body(context, theme),
     );
   }
 
-  Widget _header() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
-      child: Row(
-        children: [
-          const Text('Ana Ekran',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
-          const Spacer(),
-          IconButton(
-            icon: const Icon(Icons.settings_outlined),
-            onPressed: widget.onOpenSettings,
-          )
-        ],
-      ),
-    );
-  }
+  Widget _body(BuildContext context, ColorScheme theme) {
+    // HER HAFTA FARKLI, O HAFTA İÇİN SABİT "Trendler"
+    final trending = _weeklyTrending(allIngredients, 12);
 
-  Widget _searchBar() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: _searchC,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                hintText: 'Ara...',
-                isDense: true,
-                filled: true,
-                fillColor: Colors.grey.shade100,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          InkWell(
-            onTap: _openSortSheet,
-            borderRadius: BorderRadius.circular(14),
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.red.shade50,
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: const Icon(Icons.tune, color: Colors.red),
-            ),
-          )
-        ],
-      ),
-    );
-  }
+    final categories = <_Category>[
+      _Category('Vegan', Icons.eco_outlined, 'vegan'),
+      _Category('Vejetaryen', Icons.restaurant_outlined, 'vegetarian'),
+      _Category('Glutensiz', Icons.no_food_outlined, 'gluten_free'),
+      _Category('Laktozsuz', Icons.free_breakfast_outlined, 'lactose_free'),
+      _Category('Helal', Icons.verified_outlined, 'halal'),
+      _Category('Katkı', Icons.science_outlined, 'additive'),
+    ];
+    final catColors = _categoryPalettes(theme);
 
-  Widget _categoryBar() {
-    final cats = IngredientCategory.values;
-    return SizedBox(
-      height: 46,
-      child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        scrollDirection: Axis.horizontal,
-        children: [
-          for (final c in cats)
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: ChoiceChip(
-                label: Text(CategoryHelper.label(c)),
-                selected: _selectedCat == c,
-                onSelected: (_) {
-                  setState(() {
-                    if (_selectedCat == c) {
-                      _selectedCat = null;
-                    } else {
-                      _selectedCat = c;
-                    }
-                  });
-                },
-              ),
-            )
-        ],
-      ),
-    );
-  }
-
-  Widget _popularSection(List<dynamic> list) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Popüler İlk 5',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-          const SizedBox(height: 6),
+          const Text('Kategoriler',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+          const SizedBox(height: 12),
           SizedBox(
-            height: 135,
-            child: ListView.builder(
+            height: 120,
+            child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: list.length,
-              itemBuilder: (_, i) {
-                final ing = list[i];
-                final name = (ing.core?.primaryName ?? '').toString();
-                final count = PopularityService.instance.count(
-                  ing,
-                  keyFn: (x) =>
-                      (x.core?.primaryName ?? '').toString().toLowerCase(),
-                );
-                return GestureDetector(
-                  onTap: () => widget.onOpenDetail(ing),
-                  child: Container(
-                    width: 150,
-                    margin: const EdgeInsets.only(right: 12),
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 6,
-                          color: Colors.black.withOpacity(.06),
-                          offset: const Offset(0, 2),
-                        )
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(name,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style:
-                                const TextStyle(fontWeight: FontWeight.w600)),
-                        const Spacer(),
-                        Row(
-                          children: [
-                            const Icon(Icons.trending_up,
-                                size: 14, color: Colors.red),
-                            const SizedBox(width: 4),
-                            Text('$count'),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+              itemCount: categories.length,
+              separatorBuilder: (_, __) => const SizedBox(width: 12),
+              itemBuilder: (ctx, idx) {
+                final c = categories[idx];
+                final palette = catColors[idx % catColors.length];
+                return _CategoryCard(
+                  title: c.title,
+                  icon: c.icon,
+                  bg1: palette.$1,
+                  bg2: palette.$2,
+                  onTap: () {
+                    Navigator.of(ctx).push(MaterialPageRoute(
+                      builder: (_) => SearchScreen(
+                        allIngredients: allIngredients,
+                        initialFilters: {c.filterKey},
+                      ),
+                    ));
+                  },
                 );
               },
             ),
-          )
+          ),
+          const SizedBox(height: 20),
+          const Text('Trendler',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+          const SizedBox(height: 12),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: trending.length,
+            separatorBuilder: (_, __) => const SizedBox(height: 10),
+            itemBuilder: (_, i) {
+              final ing = trending[i];
+              final score = ing.risk.riskScore;
+              final color = riskColorFromScore(score);
+              final label = riskLabelFromScore(score);
+              return InkWell(
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => IngredientDetailScreen(ingredient: ing),
+                )),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: color.withOpacity(0.25)),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 6,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: color,
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              ing.core.primaryName,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              ing.core.shortSummary,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  color: theme.onSurfaceVariant),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: color.withOpacity(0.12),
+                          border: Border.all(color: color.withOpacity(0.35)),
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                        child: Text(label,
+                            style: TextStyle(
+                                color: color,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12)),
+                      ),
+                      const Icon(Icons.chevron_right),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 90),
         ],
       ),
     );
   }
 
-  Widget _rowItem(dynamic ing) {
-    final name = (ing.core?.primaryName ?? '').toString();
-    final risk = (ing.risk?.riskLevel ?? '').toString();
-    final pop = PopularityService.instance.count(
-      ing,
-      keyFn: (x) => (x.core?.primaryName ?? '').toString().toLowerCase(),
-    );
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      elevation: 0,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(14),
-        onTap: () => widget.onOpenDetail(ing),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-          child: Row(
-            children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.red.shade100,
-                child: Text(
-                  name.isEmpty ? '?' : name[0].toUpperCase(),
-                  style: const TextStyle(
-                      color: Colors.red, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(name,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 15)),
-                    const SizedBox(height: 2),
-                    Row(
-                      children: [
-                        _riskBadge(risk),
-                        const SizedBox(width: 8),
-                        Row(
-                          children: [
-                            const Icon(Icons.local_fire_department,
-                                size: 14, color: Colors.orange),
-                            const SizedBox(width: 2),
-                            Text(pop.toString(),
-                                style: TextStyle(
-                                    fontSize: 11,
-                                    color: Colors.grey.shade700,
-                                    fontWeight: FontWeight.w500)),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              const Icon(Icons.chevron_right, color: Colors.grey, size: 20),
-            ],
-          ),
-        ),
-      ),
-    );
+  // Epoch haftasına göre seed üretip karıştırır; o hafta içinde sabit kalır.
+  List<Ingredient> _weeklyTrending(List<Ingredient> all, int count) {
+    if (all.isEmpty) return const [];
+    final weekSeed =
+        DateTime.now().toUtc().millisecondsSinceEpoch ~/ const Duration(days: 7).inMilliseconds;
+    final rnd = Random(weekSeed);
+    final list = List<Ingredient>.from(all);
+    list.shuffle(rnd);
+    return list.take(count).toList();
   }
 
-  Widget _riskBadge(String level) {
-    Color c;
-    switch (level.toLowerCase()) {
-      case 'high':
-      case 'yüksek':
-        c = Colors.red.shade600;
-        break;
-      case 'medium':
-      case 'orta':
-        c = Colors.orange.shade600;
-        break;
-      case 'low':
-      case 'düşük':
-        c = Colors.green.shade600;
-        break;
-      default:
-        c = Colors.blueGrey.shade500;
+  Color _riskColorOf(String level, BuildContext context) {
+    final l = level.toLowerCase();
+    if (l.contains('high') || l.contains('yüksek') || l.contains('red') || l.contains('kırmızı')) {
+      return Colors.red;
     }
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-      decoration: BoxDecoration(
-        color: c.withOpacity(.15),
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Text(
-        level.isEmpty ? 'N/A' : level,
-        style: TextStyle(
-            fontSize: 11, color: c, fontWeight: FontWeight.w600),
-      ),
-    );
+    if (l.contains('medium') || l.contains('orta') || l.contains('amber') || l.contains('turuncu')) {
+      return Colors.amber;
+    }
+    if (l.contains('low') || l.contains('düşük') || l.contains('green') || l.contains('yeşil') || l.contains('yesil')) {
+      return Colors.green;
+    }
+    return Theme.of(context).colorScheme.outline;
   }
+
+  String _riskLabelOf(String level) {
+    final l = level.toLowerCase();
+    if (l.contains('high') || l.contains('yüksek')) return 'Yüksek';
+    if (l.contains('medium') || l.contains('orta')) return 'Orta';
+    if (l.contains('low') || l.contains('düşük')) return 'Düşük';
+    return 'Bilinmiyor';
+  }
+
+  List<(Color, Color)> _categoryPalettes(ColorScheme scheme) => [
+        (scheme.primaryContainer, scheme.secondaryContainer),
+        (Colors.teal.shade200, Colors.teal.shade100),
+        (Colors.indigo.shade200, Colors.indigo.shade100),
+        (Colors.orange.shade200, Colors.orange.shade100),
+        (Colors.pink.shade200, Colors.pink.shade100),
+        (Colors.blueGrey.shade200, Colors.blueGrey.shade100),
+      ];
 }
 
-class _SortSheet extends StatelessWidget {
-  final SortMode current;
-  final void Function(SortMode) onSelect;
-  final VoidCallback onReset;
-  const _SortSheet(
-      {required this.current, required this.onSelect, required this.onReset});
+class _Category {
+  final String title;
+  final IconData icon;
+  final String filterKey;
+  _Category(this.title, this.icon, this.filterKey);
+}
+
+class _CategoryCard extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final Color bg1;
+  final Color bg2;
+  final VoidCallback onTap;
+  const _CategoryCard({
+    required this.title,
+    required this.icon,
+    required this.bg1,
+    required this.bg2,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-      expand: false,
-      initialChildSize: .45,
-      maxChildSize: .85,
-      builder: (_, scroll) => Container(
-        decoration: const BoxDecoration(
-          color: Color(0xFF1E2024),
-          borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-        ),
-        child: ListView(
-          controller: scroll,
-          padding: const EdgeInsets.fromLTRB(16, 18, 16, 32),
-          children: [
-            Center(
-              child: Container(
-                width: 50,
-                height: 5,
-                decoration: BoxDecoration(
-                  color: Colors.white24,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Text('Sırala',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18)),
-            const SizedBox(height: 12),
-            _radio(context, 'Popülerlik', SortMode.popularity),
-            _radio(context, 'A → Z', SortMode.az),
-            _radio(context, 'Z → A', SortMode.za),
-            const SizedBox(height: 24),
-            ElevatedButton.icon(
-              onPressed: onReset,
-              icon: const Icon(Icons.refresh),
-              label: const Text('Sıfırla'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red.shade600,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-              ),
-            )
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        width: 150,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [bg1, bg2]),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(0.06),
+                blurRadius: 10,
+                offset: const Offset(0, 4))
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _radio(BuildContext ctx, String label, SortMode mode) {
-    final sel = current == mode;
-    return InkWell(
-      onTap: () => onSelect(mode),
-      borderRadius: BorderRadius.circular(12),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
-        child: Row(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(sel ? Icons.radio_button_checked : Icons.radio_button_off,
-                color: sel ? Colors.red.shade400 : Colors.white54),
-            const SizedBox(width: 12),
-            Text(
-              label,
-              style: TextStyle(
-                color: sel ? Colors.red.shade200 : Colors.white70,
-                fontWeight: sel ? FontWeight.w600 : FontWeight.w400,
-              ),
-            ),
+            Icon(icon, size: 28),
+            const Spacer(),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.w800)),
           ],
         ),
       ),

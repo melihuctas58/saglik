@@ -1,105 +1,497 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import '../services/popularity_service.dart';
-import '../services/scan_history_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class AccountScreen extends StatelessWidget {
-  final List<dynamic> allIngredients;
-  final void Function(dynamic) onOpenIngredient;
+import '../models/ingredient.dart';
+import '../services/scan_history_service.dart';
+import '../services/firebase_auth_service.dart';
+import '../services/cloud_scan_history.dart';
+import 'google_sign_in_screen.dart';
+
+class AccountScreen extends StatefulWidget {
+  final List<Ingredient> allIngredients;
+  final void Function(Ingredient ing) onOpenIngredient;
+
+  final VoidCallback? onGoToScans;
+  final VoidCallback? onGoToSearch;
+
   const AccountScreen({
     super.key,
     required this.allIngredients,
     required this.onOpenIngredient,
+    this.onGoToScans,
+    this.onGoToSearch,
   });
 
   @override
-  Widget build(BuildContext context) {
-    final scans = ScanHistoryService.instance.records.length;
-    final counts = PopularityService.instance.snapshot();
-    final top = _topPopular(allIngredients, 5);
+  State<AccountScreen> createState() => _AccountScreenState();
+}
 
-    return SafeArea(
-      child: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 40),
+class _AccountScreenState extends State<AccountScreen> {
+  late final Stream<User?> _authStream;
+  User? _user;
+  String? _lastSyncedUid;
+  bool _syncing = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _user = FirebaseAuth.instance.currentUser;
+    _lastSyncedUid = _user?.uid;
+
+    if (_user != null) {
+      Future.microtask(() => _syncCloudToLocal(showSnack: false));
+    }
+
+    _authStream = FirebaseAuth.instance.userChanges();
+    _authStream.listen((u) async {
+      if (!mounted) return;
+      setState(() => _user = u);
+
+      final uid = u?.uid;
+      if (uid == null) {
+        await _clearLocalHistorySafely();
+        _lastSyncedUid = null;
+        if (mounted) setState(() {});
+        return;
+      }
+
+      if (uid != _lastSyncedUid) {
+        _lastSyncedUid = uid;
+        await _syncCloudToLocal(showSnack: false);
+      }
+    });
+  }
+
+  Future<void> _clearLocalHistorySafely() async {
+    await ScanHistoryService.instance.clear();
+  }
+
+  Future<void> _syncCloudToLocal({bool showSnack = true}) async {
+    if (_syncing) return;
+    _syncing = true;
+    try {
+      final scans = await CloudScanHistory.instance.fetchAllOnce();
+
+      ScanHistoryService.instance.beginSync();
+
+      final lookup = <String, Ingredient>{};
+      for (final ing in widget.allIngredients) {
+        final key = _primaryNameOf(ing).toLowerCase();
+        if (key.isNotEmpty) {
+          lookup[key] = ing;
+        }
+      }
+
+      await _clearLocalHistorySafely();
+
+      for (final s in scans.reversed) {
+        final matched = <Ingredient>[];
+        for (final name in s.ingredients) {
+          final k = name.toLowerCase().trim();
+          final m = lookup[k];
+          if (m != null) matched.add(m);
+        }
+        if (matched.isNotEmpty) {
+          await ScanHistoryService.instance.add(matched);
+        }
+      }
+
+      if (mounted) setState(() {});
+      if (showSnack && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Geçmiş buluttan senkronlandı')),
+        );
+      }
+    } catch (e) {
+      if (mounted && showSnack) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Senkron hatası: $e')),
+        );
+      }
+    } finally {
+      ScanHistoryService.instance.endSync();
+      _syncing = false;
+    }
+  }
+
+  String _primaryNameOf(Ingredient ing) {
+    try {
+      final dyn = ing as dynamic;
+      final core = dyn.core;
+      if (core != null) {
+        final v = core.primaryName ?? core.name ?? core.title;
+        if (v != null) return v.toString();
+      }
+      final v = dyn.name ?? dyn.title ?? dyn.label;
+      if (v != null) return v.toString();
+      return ing.toString();
+    } catch (_) {
+      return ing.toString();
+    }
+  }
+
+  Future<void> _switchAccount() async {
+    await FirebaseAuthService.instance.signOut();
+    if (!mounted) return;
+    final newUser = await Navigator.of(context).push<User?>(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (routeCtx) => GoogleSignInScreen(
+          onSignedIn: (user) => Navigator.of(routeCtx).pop(user),
+        ),
+      ),
+    );
+    if (!mounted) return;
+    if (newUser != null) {
+      _lastSyncedUid = newUser.uid;
+      await _syncCloudToLocal();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Hoş geldin, ${newUser.displayName ?? ''}')),
+      );
+      setState(() => _user = newUser);
+    }
+  }
+
+  Future<void> _signOut() async {
+    await FirebaseAuthService.instance.signOut();
+    if (!mounted) return;
+
+    await _clearLocalHistorySafely();
+    _lastSyncedUid = null;
+    setState(() => _user = null);
+
+    final newUser = await Navigator.of(context).push<User?>(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (routeCtx) => GoogleSignInScreen(
+          onSignedIn: (user) => Navigator.of(routeCtx).pop(user),
+        ),
+      ),
+    );
+    if (!mounted) return;
+    if (newUser != null) {
+      _lastSyncedUid = newUser.uid;
+      await _syncCloudToLocal();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Hoş geldin, ${newUser.displayName ?? ''}')),
+      );
+      setState(() => _user = newUser);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Hesaptan çıkış yapıldı')),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final records = ScanHistoryService.instance.records;
+
+    final counts = _riskCountsFromHistory(records);
+    final total = counts.low + counts.medium + counts.high;
+    final segments = [
+      _Seg('Düşük', counts.low, Colors.green.shade500),
+      _Seg('Orta', counts.medium, Colors.orange.shade600),
+      _Seg('Yüksek', counts.high, Colors.red.shade600),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Hesap'),
+        actions: [
+          if (_syncing)
+            const Padding(
+              padding: EdgeInsets.only(right: 12),
+              child: SizedBox(
+                width: 20, height: 20,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
+            ),
+          IconButton(
+            tooltip: 'Buluttan yenile',
+            icon: const Icon(Icons.sync),
+            onPressed: () => _syncCloudToLocal(),
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(12, 12, 12, 20),
         children: [
-          const Text('Hesap',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
+          _AccountHeader(user: _user),
+          const SizedBox(height: 12),
+
+          Row(
+            children: [
+              Expanded(
+                child: _StatCard(
+                  title: 'Toplam Tarama',
+                  value: '${records.length}',
+                  onTap: widget.onGoToScans,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: _StatCard(
+                  title: 'Malzeme Sayısı',
+                  value: '${widget.allIngredients.length}',
+                  onTap: widget.onGoToSearch,
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 16),
-          _stat(Icons.camera_alt, 'Toplam Tarama', scans.toString(),
-              Colors.red.shade600),
-          _stat(Icons.storage, 'Malzeme Sayısı', allIngredients.length.toString(),
-              Colors.indigo.shade500),
-          _stat(Icons.local_fire_department, 'Popülerliği Olan',
-              counts.length.toString(), Colors.orange.shade600),
-          const SizedBox(height: 18),
-          const Text('En Popüler 5',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-          const SizedBox(height: 8),
-          if (top.isEmpty)
-            const Text('Veri yok', style: TextStyle(color: Colors.grey)),
-          ...top.map((p) => ListTile(
-                onTap: () => onOpenIngredient(p.item),
-                leading: CircleAvatar(
-                  backgroundColor: Colors.red.shade100,
-                  child: Text(
-                    (p.name.isEmpty ? '?' : p.name[0].toUpperCase()),
-                    style: const TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold),
+
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: cs.surface,
+              border: Border.all(color: cs.outlineVariant),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Taranan Malzemeler Risk Dağılımı',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 180,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 180,
+                        width: 180,
+                        child: CustomPaint(
+                          painter: _DonutPainter(segments, total: total),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: segments.map((s) {
+                            final pct = total == 0 ? 0 : ((s.value / total) * 100).round();
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    width: 12, height: 12,
+                                    decoration: BoxDecoration(color: s.color, shape: BoxShape.circle),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text('${s.label} • ${s.value} (${pct}%)'),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                title: Text(p.name),
-                subtitle: Text('Sayım: ${p.count}'),
-                trailing: const Icon(Icons.chevron_right),
-              )),
-        ],
-      ),
-    );
-  }
-
-  Widget _stat(IconData icon, String title, String val, Color c) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: c.withOpacity(.12),
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: c.withOpacity(.25),
-            child: Icon(icon, color: c),
+              ],
+            ),
           ),
-          const SizedBox(width: 16),
-          Expanded(
-              child: Text(title,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w600, fontSize: 14))),
-          Text(val,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 16, color: c)),
+
+          Container(
+            margin: const EdgeInsets.only(top: 16),
+            decoration: BoxDecoration(
+              color: cs.surface,
+              border: Border.all(color: cs.outlineVariant),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.switch_account),
+                  title: const Text('Hesabı değiştir (Google)'),
+                  subtitle: const Text('Farklı bir Google hesabıyla devam et'),
+                  onTap: _switchAccount,
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  leading: const Icon(Icons.logout),
+                  title: const Text('Çıkış yap'),
+                  subtitle: const Text('Hesabından güvenle çık'),
+                  onTap: _signOut,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
-  List<_PopItem> _topPopular(List<dynamic> all, int n) {
-    final snap = PopularityService.instance.snapshot();
-    final tmp = <_PopItem>[];
-    for (final ing in all) {
-      final name = (ing.core?.primaryName ?? '').toString();
-      if (name.isEmpty) continue;
-      final k = name.toLowerCase();
-      final c = snap[k] ?? 0;
-      if (c > 0) tmp.add(_PopItem(item: ing, name: name, count: c));
+  _RiskCounts _riskCountsFromHistory(List<ScanRecord> records) {
+    int low = 0, medium = 0, high = 0;
+    for (final rec in records) {
+      for (final ing in rec.ingredients) {
+        final s = _scoreOf(ing);
+        if (s == null) continue;
+        if (s >= 2800) {
+          high++;
+        } else if (s >= 2000) {
+          medium++;
+        } else {
+          low++;
+        }
+      }
     }
-    tmp.sort((a, b) => b.count.compareTo(a.count));
-    return tmp.take(n).toList();
+    return _RiskCounts(low: low, medium: medium, high: high);
+  }
+
+  int? _scoreOf(Ingredient ing) {
+    try {
+      final dyn = ing as dynamic;
+      final risk = dyn.risk;
+      if (risk == null) return null;
+      final v = risk.riskScore;
+      if (v is int) return v;
+      if (v is double) return v.round();
+      return int.tryParse('$v');
+    } catch (_) {
+      return null;
+    }
   }
 }
 
-class _PopItem {
-  final dynamic item;
-  final String name;
-  final int count;
-  _PopItem({required this.item, required this.name, required this.count});
+class _RiskCounts {
+  final int low;
+  final int medium;
+  final int high;
+  const _RiskCounts({required this.low, required this.medium, required this.high});
+}
+
+class _Seg {
+  final String label;
+  final int value;
+  final Color color;
+  _Seg(this.label, this.value, this.color);
+}
+
+class _DonutPainter extends CustomPainter {
+  final List<_Seg> segments;
+  final int total;
+  _DonutPainter(this.segments, {required this.total});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+    final center = rect.center;
+    final radius = math.min(size.width, size.height) / 2;
+
+    final base = Paint()
+      ..color = Colors.grey.withOpacity(0.15)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 26
+      ..strokeCap = StrokeCap.round;
+    canvas.drawCircle(center, radius - 13, base);
+
+    if (total <= 0) return;
+
+    double start = -math.pi / 2;
+    for (final s in segments) {
+      if (s.value <= 0) continue;
+      final sweep = (s.value / total) * 2 * math.pi;
+      final p = Paint()
+        ..color = s.color
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 26
+        ..strokeCap = StrokeCap.round;
+      final r = Rect.fromCircle(center: center, radius: radius - 13);
+      canvas.drawArc(r, start, sweep, false, p);
+      start += sweep;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}
+
+class _AccountHeader extends StatelessWidget {
+  final User? user;
+  const _AccountHeader({required this.user});
+
+  @override
+  Widget build(BuildContext context) {
+    final name = user?.displayName ?? 'Kullanıcı';
+    final email = user?.email ?? '';
+    final photo = user?.photoURL;
+
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 28,
+          backgroundImage: photo != null ? NetworkImage(photo) : null,
+          child: photo == null
+              ? Text(
+                  name.isNotEmpty ? name.characters.first.toUpperCase() : '?',
+                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+                )
+              : null,
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+              if (email.isNotEmpty)
+                Text(
+                  email,
+                  style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
+                ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _StatCard extends StatelessWidget {
+  final String title;
+  final String value;
+  final VoidCallback? onTap;
+  const _StatCard({required this.title, required this.value, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Material(
+      color: cs.surface,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: cs.outlineVariant),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            children: [
+              Text(title, style: TextStyle(color: cs.onSurfaceVariant)),
+              const SizedBox(height: 6),
+              Text(
+                value,
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

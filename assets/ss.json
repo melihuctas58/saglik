@@ -1,0 +1,753 @@
+{
+    "id": "et_marinasyon_bitkisel_karisimi",
+    "slug": "et_marinasyon_bitkisel_karisimi",
+    "core": {
+      "primary_name": "Et marinasyon bitkisel karışımı",
+      "names": {
+        "tr": "Et marinasyon bitkisel karışımı",
+        "en": "Herbal meat marinade blend",
+        "synonyms": [
+          "et marinasyon karışımı",
+          "et için bitkisel marinad",
+          "meat marinade herb blend",
+          "herbal marinade for meat",
+          "spice mix for meat marinade",
+          "marinasyon baharat karışımı",
+          "et marine karışımı",
+          "et marinade miks",
+          "marinade spice for beef",
+          "marinade mix (meat)",
+          "et marinasyon bitkisel",
+          "m4rinasyon et karışımı",
+          "marinasyon seti (et)",
+          "sirke-limon bazlı et karışımı"
+        ]
+      },
+      "category": "bitkisel_urun",
+      "subcategory": "stabilite_ajani",
+      "short_summary": "Kırmızı etler için tat, yumuşaklık ve tazelik algısını artırmaya yönelik bitkisel baharatlar, doğal asit kaynakları ve bazen az tuz/şeker içeren karışımdır.",
+      "user_friendly_summary": "Kısa Vadeli Etkiler: Eti daha aromatik ve yumuşak hissettirir; hafif ekşilik ve baharat notaları iştah açar. Doz aşılırsa aşırı ekşi/acı baskın olabilir.\n\nUzun Vadeli Riskler: Tipik kullanımda düşüktür. Tuz oranı çok yüksek formüller toplam sodyumu artırabilir (ürüne bağlı). Baharatlara duyarlılığı olanlarda rahatsızlık olabilir. Kanserojen değildir; aksine bazı bitkisel karışımlar yüksek ısı pişirmede istenmeyen yanık tatların öne çıkmasını azaltmaya yardımcı olabilir.\n\nFaydalar (ne kadar sağlıklı?): Tuz/şeker yükünü artırmadan lezzeti belirginleştirmeye yardımcı olur; doğru bekletme ile et daha sulu ve ‘doyurucu’ algılanır, daha az ilave sos/tuz ihtiyacı doğabilir.\n\nYanlış Bilinenler: “Marinasyon eti mutlaka bozar” doğru değildir; hijyen ve buzdolabı koşulları sağlandığında faydalıdır.\n\nPratik Öneri: Küçük dozla başlayın; buzdolabında bekletin; artan marinasyon sıvısını çiğ et teması olduysa yeniden kullanmayın.",
+      "icon_hint": "powder"
+    },
+    "identifiers": { "e_number": null },
+    "classification": {
+      "is_additive": false,
+      "origin_type": "bitkisel"
+    },
+    "risk": {
+      "risk_score": 190,
+      "risk_factors": [
+        {
+          "title": "Duyusal dengesizlik (aşırı ekşi/acı)",
+          "groups_affected": ["genel"],
+          "condition": "asiri_doz",
+          "mechanism": "Yüksek asit ve fenolik yoğunluk acı ve sert tat oluşturabilir.",
+          "evidence": "",
+          "mitigation": "Dozu azaltmak; yağ/asidite dengesini kurmak; kısa marinasyon.",
+          "score": 70
+        },
+        {
+          "title": "Mide ekşimesi/rahatsızlık",
+          "groups_affected": ["genel", "cocuklar"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Asidik ve baharatlı profil hassas kişileri rahatsız edebilir.",
+          "evidence": "",
+          "mitigation": "Öğünle almak; gece geç saatte yüksek dozdan kaçınmak.",
+          "score": 50
+        },
+        {
+          "title": "Baharat duyarlılığı (nadir)",
+          "groups_affected": ["genel", "alerjik_bireyler"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Bitkisel bileşenlere bireysel duyarlılık.",
+          "evidence": "",
+          "mitigation": "İlk kullanımda küçük miktar; reaksiyonda bırakmak.",
+          "score": 70
+        },
+        {
+          "title": "Yüksek sodyum (formüle bağlı)",
+          "groups_affected": ["genel", "kalp_hastalari", "bobrek_hastalari"],
+          "condition": "urun_formulasyonu_yuksek_sodyum",
+          "mechanism": "Tuz oranı yüksek karışımlar toplam sodyumu artırabilir.",
+          "evidence": "",
+          "mitigation": "Düşük sodyumlu karışım seçmek; porsiyonu sınırlamak.",
+          "score": 180
+        }
+      ],
+      "risk_explanation": "Baz senaryo: duyusal dengesizlik (70) + mide rahatsızlığı (50) + baharat duyarlılığı (70) = 190. ‘Yüksek sodyum’ ürün formülüne bağlı koşullu bir risktir; baz skora eklenmedi."
+    },
+    "health": {
+      "health_flags": ["tuz_ilavesiz_lezzet", "stabilite_destegi", "aroma_asit_denge"],
+      "claims": [{ "text": "", "authorized": false, "authority": "", "evidence_level": "", "note": "" }],
+      "safety_notes": "Marinasyonu buzdolabında yapın; çiğ etle temas etmiş marinasyonu tekrar kullanmayın; önerilen bekletme süresini aşmayın.",
+      "contraindications": []
+    },
+    "allergen": { "allergen_flags": [], "note": "Baharatlara karşı bireysel duyarlılık nadirdir; ilk kullanımda az miktar deneyin." },
+    "dietary": {
+      "vegan": true,
+      "vegetarian": true,
+      "halal": "supheli",
+      "kosher": null,
+      "gluten_free": true,
+      "lactose_free": true,
+      "diet_note": "Karışım bitkisel olsa da et üzerinde kullanılır; çapraz bulaş riski kullanım aşamasına bağlıdır."
+    },
+    "usage": {
+      "where_used": ["et_marineleri", "soslar"],
+      "common_roles": ["stabilite_ajani", "aroma_verici", "aroma_asit_denge"],
+      "typical_amount": "Ürün ve et miktarına göre %0.3–1.0 karışım (kuru bazda)"
+    },
+    "consumer": {
+      "myths": ["Marinasyon eti bozar.", "Marinasyon sadece tuzdan ibarettir."],
+      "label_names_alt": ["meat marinade herb blend", "marinade mix (meat)"],
+      "faqs": [
+        "Ne kadar bekletmeliyim? — İnce parçalar 30–120 dk, kalın parçalar birkaç saate kadar; tarifinize göre ayarlayın.",
+        "Fırın mı tava mı? — Her ikisi de olur; yüksek ısıda yanık yüzey oluşumunu abartmayın."
+      ]
+    },
+    "regulatory": {
+      "tr_status": "Genel gida",
+      "eu_status": "Genel gıda bileşeni",
+      "us_status": "Genel gıda bileşeni",
+      "adi_mg_per_kg_bw": null,
+      "regulation_last_updated": "",
+      "regulation_source_url": ""
+    },
+    "sources": [],
+    "person_special_info": []
+  },
+  {
+    "id": "tavuk_marinasyon_karisimi",
+    "slug": "tavuk_marinasyon_karisimi",
+    "core": {
+      "primary_name": "Tavuk marinasyon karışımı",
+      "names": {
+        "tr": "Tavuk marinasyon karışımı",
+        "en": "Poultry marinade blend",
+        "synonyms": [
+          "tavuk marinade",
+          "poultry marinade mix",
+          "chicken marinade herb blend",
+          "tavuk baharat marinasyonu",
+          "tavuk marine karışımı",
+          "marinade mix (chicken)",
+          "t4vuk marinasyon",
+          "kanatlı marinasyon karışımı"
+        ]
+      },
+      "category": "bitkisel_urun",
+      "subcategory": "stabilite_ajani",
+      "short_summary": "Kanatlı etleri için hafif asit kaynakları, baharatlar ve bazen az tuz/şeker içeren tat ve tazelik destek karışımıdır.",
+      "user_friendly_summary": "Kısa Vadeli Etkiler: Tavuğa canlı koku ve yumuşak doku sağlar; hafif ekşilik ‘temiz’ bir tat bırakır. Aşırı dozda keskin ekşilik/acı baskın olabilir.\n\nUzun Vadeli Riskler: Tipik kullanımda düşüktür. Tuz oranı yüksek formüller toplam sodyumu artırabilir (ürüne bağlı). Baharat duyarlılığı olanlarda rahatsızlık olabilir. Kanserojen değildir.\n\nFaydalar (ne kadar sağlıklı?): Tuz/şeker eklemeden lezzeti güçlendirmeye yardımcı olur; dengeli marinasyon daha az yağ ve tuzla da tatmin edici sonuç verebilir.\n\nYanlış Bilinenler: “Marinasyon yapınca dışı lezzetli, içi tatsız kalır” doğru değildir; küçük parçalarda denge yakalamak kolaydır.\n\nPratik Öneri: Çiğ tavukla temas eden marinasyonu yeniden kullanmayın; buzdolabında bekletin; pişirmeyi iç sıcaklık yeterli olacak şekilde tamamlayın.",
+      "icon_hint": "powder"
+    },
+    "identifiers": { "e_number": null },
+    "classification": {
+      "is_additive": false,
+      "origin_type": "bitkisel"
+    },
+    "risk": {
+      "risk_score": 180,
+      "risk_factors": [
+        {
+          "title": "Duyusal dengesizlik (aşırı ekşi/acı)",
+          "groups_affected": ["genel"],
+          "condition": "asiri_doz",
+          "mechanism": "Asit ve fenolik yoğunluk tat sertliği oluşturur.",
+          "evidence": "",
+          "mitigation": "Dozu azaltmak; kısa süreli marinasyon denemek.",
+          "score": 60
+        },
+        {
+          "title": "Mide rahatsızlığı/ekşime",
+          "groups_affected": ["genel", "cocuklar"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Asidik profil hassasiyeti artırabilir.",
+          "evidence": "",
+          "mitigation": "Öğünle birlikte tüketmek; porsiyonu yaymak.",
+          "score": 50
+        },
+        {
+          "title": "Baharat duyarlılığı (nadir)",
+          "groups_affected": ["genel", "alerjik_bireyler"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Bireysel bitki duyarlılığı olabilir.",
+          "evidence": "",
+          "mitigation": "İlk kullanımda küçük miktar; alternatif baharat profili seçmek.",
+          "score": 70
+        },
+        {
+          "title": "Yüksek sodyum olasılığı (formüle bağlı)",
+          "groups_affected": ["genel", "kalp_hastalari", "bobrek_hastalari"],
+          "condition": "urun_formulasyonu_yuksek_sodyum",
+          "mechanism": "Tuz içeriği yüksek reçeteler toplam sodyumu artırır.",
+          "evidence": "",
+          "mitigation": "Düşük sodyumlu varyant; porsiyon kontrolü.",
+          "score": 160
+        }
+      ],
+      "risk_explanation": "Baz senaryo: duyusal dengesizlik (60) + mide rahatsızlığı (50) + duyarlılık (70) = 180. Yüksek sodyum formül koşuluna bağlıdır; baz skora dahil edilmedi."
+    },
+    "health": {
+      "health_flags": ["tuz_ilavesiz_lezzet", "stabilite_destegi", "aroma_asit_denge"],
+      "claims": [{ "text": "", "authorized": false, "authority": "", "evidence_level": "", "note": "" }],
+      "safety_notes": "Buzdolabında marine edin; çiğ temaslı marinasyonu tekrar kullanmayın; iç sıcaklık hedefini karşılayın.",
+      "contraindications": []
+    },
+    "allergen": { "allergen_flags": [], "note": "Bileşenlerine bireysel duyarlılık nadirdir." },
+    "dietary": {
+      "vegan": true,
+      "vegetarian": true,
+      "halal": "supheli",
+      "kosher": null,
+      "gluten_free": true,
+      "lactose_free": true,
+      "diet_note": "Karışım bitkisel; kullanımda çapraz bulaş pişirme ortamına bağlıdır."
+    },
+    "usage": {
+      "where_used": ["et_marineleri", "soslar"],
+      "common_roles": ["stabilite_ajani", "aroma_verici", "aroma_asit_denge"],
+      "typical_amount": "%0.3–1.0 (kuru bazda), parçaya ve tarife göre"
+    },
+    "consumer": {
+      "myths": ["Marinasyon iç kısmı lezzetsiz bırakır."],
+      "label_names_alt": ["poultry marinade blend", "chicken marinade mix"],
+      "faqs": [
+        "Kaç saat yeterli? — Küçük parçalarda 30–120 dk genelde yeterlidir.",
+        "Fırında kurur mu? — Yağ eklemek ve folyo/kapak kullanmak su kaybını azaltır."
+      ]
+    },
+    "regulatory": {
+      "tr_status": "Genel gida",
+      "eu_status": "Genel gıda bileşeni",
+      "us_status": "Genel gıda bileşeni",
+      "adi_mg_per_kg_bw": null,
+      "regulation_last_updated": "",
+      "regulation_source_url": ""
+    },
+    "sources": [],
+    "person_special_info": []
+  },
+  {
+    "id": "sekerlestirilmis_tuz",
+    "slug": "sekerlestirilmis_tuz",
+    "core": {
+      "primary_name": "Şekerleştirilmiş tuz",
+      "names": {
+        "tr": "Şekerleştirilmiş tuz",
+        "en": "Sugar-salted mix (sweetened salt)",
+        "synonyms": [
+          "şekerli tuz",
+          "sweetened salt",
+          "sugar salt",
+          "sugar-salt blend",
+          "tatli tuz karisimi",
+          "şeker ilaveli tuz",
+          "seker-tuz karisimi (tatlandirilmis)",
+          "sweet salt",
+          "sugared salt",
+          "sug4r salt"
+        ]
+      },
+      "category": "temel_bilesen",
+      "subcategory": "",
+      "short_summary": "Sofra tuzu ile şekerin belirli oranlarda karıştırılmasıyla elde edilen, tatlı-tuzlu etkiyi aynı anda veren bir karışımdır.",
+      "user_friendly_summary": "Kısa Vadeli Etkiler: Az miktarla ‘tatlı-tuzlu’ denge sağlar; atıştırmalık ve kaplamalarda iştah açıcı etki oluşturur. Aşırı kullanımda yapışkanlık hissi ve yoğun tat oluşur.\n\nUzun Vadeli Riskler: Sık ve yüksek tüketim toplam sodyum ve şeker alımını artırır; bu durum tansiyon ve diş sağlığı açısından olumsuz olabilir. Kanserojen değildir.\n\nFaydalar (ne kadar sağlıklı?): Küçük dozlarda kullanıldığında belirgin lezzet sağladığı için toplam kullanım miktarını düşürmeye yardımcı olabilir; doğru tarifle aşırı tuz/şeker ekleme ihtiyacı azalabilir.\n\nYanlış Bilinenler: “Şekerli tuz sağlıksızdır, hiç kullanılmamalı” genellemesi doğru değildir; mesele toplam miktardır.\n\nPratik Öneri: İnce serpiştirme idealdir; günün toplam tuz ve şeker hedefini göz önünde bulundurun.",
+      "icon_hint": "powder"
+    },
+    "identifiers": { "e_number": null },
+    "classification": {
+      "is_additive": false,
+      "origin_type": "mineral"
+    },
+    "risk": {
+      "risk_score": 300,
+      "risk_factors": [
+        {
+          "title": "Yüksek sodyum alımı",
+          "groups_affected": ["genel", "kalp_hastalari", "bobrek_hastalari", "yaslilar"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Sodyum kan basıncı ve su tutulumunu etkileyebilir.",
+          "evidence": "",
+          "mitigation": "Serpiştirme şeklinde az kullanmak; günlük toplam sodyumu sınırlamak.",
+          "score": 200
+        },
+        {
+          "title": "Şeker yükü ve diş çürüğü riski",
+          "groups_affected": ["genel", "cocuklar", "diyabetikler", "obez_bireyler"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Basit şekerler enerji fazlası ve diş çürüğüne katkı sağlar.",
+          "evidence": "",
+          "mitigation": "Porsiyon kontrolü; tüketim sonrası suyla ağzı çalkalamak.",
+          "score": 80
+        },
+        {
+          "title": "Tat toleransının kayması",
+          "groups_affected": ["genel"],
+          "condition": "uzun_sure_yuksek_alim",
+          "mechanism": "Sürekli yoğun tat, daha yüksek tat eşikleri doğurabilir.",
+          "evidence": "",
+          "mitigation": "Kademeli azaltım; baharat ve asidite ile denge.",
+          "score": 40
+        }
+      ],
+      "risk_explanation": "Baz senaryo: sodyum (200) + şeker/diş riski (80) + tat toleransı (40) = 320; temkinli yaklaşım ile 300 verildi (tariflerde düşük doz kullanım dikkate alındı)."
+    },
+    "health": {
+      "health_flags": ["lezzet_yukseltici", "tuz_ilavesiz_lezzet"],
+      "claims": [{ "text": "", "authorized": false, "authority": "", "evidence_level": "", "note": "" }],
+      "safety_notes": "Günlük toplam sodyum ve serbest şeker hedefini aşmayın; çocuklarda porsiyonu sınırlayın."
+    },
+    "allergen": { "allergen_flags": [], "note": "" },
+    "dietary": {
+      "vegan": true,
+      "vegetarian": true,
+      "halal": "supheli",
+      "kosher": null,
+      "gluten_free": true,
+      "lactose_free": true,
+      "diet_note": "Basit karışımdır; çapraz bulaş üretici hattına bağlıdır."
+    },
+    "usage": {
+      "where_used": ["atistirmaliklar", "kaplama_karisimlari", "soslar", "fırıncilik"],
+      "common_roles": ["lezzet_yukseltici"],
+      "typical_amount": "Porsiyon başına 0.1–0.5 g serpiştirme; reçetede %0.1–1.0"
+    },
+    "consumer": {
+      "myths": ["Şekerli tuz tamamen sağlıksızdır."],
+      "label_names_alt": ["sweetened salt", "sugar-salt blend"],
+      "faqs": [
+        "Diş sağlığı için ne yapmalı? — Tükettikten sonra su içmek/çalkalamak faydalıdır."
+      ]
+    },
+    "regulatory": {
+      "tr_status": "Genel gida",
+      "eu_status": "Genel gıda bileşeni",
+      "us_status": "Genel gıda bileşeni",
+      "adi_mg_per_kg_bw": null,
+      "regulation_last_updated": "",
+      "regulation_source_url": ""
+    },
+    "sources": [],
+    "person_special_info": [
+      { "person_type": "diyabetikler", "note": "Serbest şeker ve toplam sodyumu sınırlayın; küçük porsiyon kullanın." },
+      { "person_type": "kalp_hastalari", "note": "Toplam sodyumu günlük hedefe göre sınırlayın." }
+    ]
+  },
+  {
+    "id": "seker_tuz_karisimi",
+    "slug": "seker_tuz_karisimi",
+    "core": {
+      "primary_name": "Şeker-tuz karışımı",
+      "names": {
+        "tr": "Şeker-tuz karışımı",
+        "en": "Sugar-salt mixture",
+        "synonyms": [
+          "seker ve tuz karisimi",
+          "sugar and salt mix",
+          "sweet and salty mix",
+          "tatli-tuzlu karisim",
+          "sugar salt blend",
+          "sekerli-tuzlu",
+          "sweet&salty mix",
+          "sugarsalt premix"
+        ]
+      },
+      "category": "temel_bilesen",
+      "subcategory": "",
+      "short_summary": "Tuz ve şekerin farklı oranlarda birleştirildiği temel bir tat ön karışımı; tatlı-tuzlu dengeyi sağlar.",
+      "user_friendly_summary": "Kısa Vadeli Etkiler: Az miktarla tatlı-tuzlu profilde hızlı etki verir; kaplama ve soslarda lezzeti ‘açık’ hale getirir. Aşırı kullanımda yapışkan ve aşırı yoğun tat oluşur.\n\nUzun Vadeli Riskler: Yüksek ve sık tüketim sodyum ve şeker alımını artırır; tansiyon ve diş sağlığı açısından olumsuz olabilir. Kanserojen değildir.\n\nFaydalar (ne kadar sağlıklı?): Doğru dozla daha az toplam kullanım ile hedef lezzet yakalanabilir; diğer yoğun tatlandırıcılara başvurmadan tarif dengesi kurulabilir.\n\nYanlış Bilinenler: “Tatlı-tuzlu bir arada olmaz” doğru değildir; pek çok üründe tat uyumunu güçlendirir.\n\nPratik Öneri: İnce serpiştirme yapın; toplam günlük tuz ve şeker hedefini aşmayın.",
+      "icon_hint": "powder"
+    },
+    "identifiers": { "e_number": null },
+    "classification": {
+      "is_additive": false,
+      "origin_type": "mineral"
+    },
+    "risk": {
+      "risk_score": 280,
+      "risk_factors": [
+        {
+          "title": "Sodyum yükü",
+          "groups_affected": ["genel", "kalp_hastalari", "bobrek_hastalari", "yaslilar"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Sodyum kan basıncını ve su tutulumunu etkileyebilir.",
+          "evidence": "",
+          "mitigation": "Az serpiştirme; sodyum hedefini izlemek.",
+          "score": 180
+        },
+        {
+          "title": "Şeker/diş çürüğü riski",
+          "groups_affected": ["genel", "cocuklar", "diyabetikler"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Serbest şekerler çürük riskini artırır.",
+          "evidence": "",
+          "mitigation": "Porsiyon kontrolü; tüketim sonrası su ile çalkalama.",
+          "score": 70
+        },
+        {
+          "title": "Tat toleransı kayması",
+          "groups_affected": ["genel"],
+          "condition": "uzun_sure_yuksek_alim",
+          "mechanism": "Sürekli yoğun tat, daha yüksek eşikler doğurabilir.",
+          "evidence": "",
+          "mitigation": "Kademeli azaltım; baharat/asit kullanımını artırmak.",
+          "score": 40
+        }
+      ],
+      "risk_explanation": "Baz senaryo: sodyum (180) + şeker/diş riski (70) + tat toleransı (40) = 290; tipik ürünlerde ince serpiştirme beklentisiyle temkinli 280 verildi."
+    },
+    "health": {
+      "health_flags": ["lezzet_yukseltici"],
+      "claims": [{ "text": "", "authorized": false, "authority": "", "evidence_level": "", "note": "" }],
+      "safety_notes": "Günlük sodyum ve serbest şeker hedeflerini aşmayın; çocuklarda porsiyonu sınırlayın."
+    },
+    "allergen": { "allergen_flags": [], "note": "" },
+    "dietary": {
+      "vegan": true,
+      "vegetarian": true,
+      "halal": "supheli",
+      "kosher": null,
+      "gluten_free": true,
+      "lactose_free": true,
+      "diet_note": "Basit karışımdır; hat kaynaklı çapraz bulaş üreticiye bağlıdır."
+    },
+    "usage": {
+      "where_used": ["atistirmaliklar", "soslar", "kaplama_karisimlari", "fırıncilik"],
+      "common_roles": ["lezzet_yukseltici"],
+      "typical_amount": "Porsiyon başına 0.1–0.5 g; reçetede %0.1–1.0"
+    },
+    "consumer": {
+      "myths": ["Tatlı ile tuz uymaz."],
+      "label_names_alt": ["sweet & salty mix", "sugar-salt mix"],
+      "faqs": [
+        "Yerine ne kullanılır? — Baharat+asit kombinasyonları ile benzer etki kısmen sağlanabilir."
+      ]
+    },
+    "regulatory": {
+      "tr_status": "Genel gida",
+      "eu_status": "Genel gıda bileşeni",
+      "us_status": "Genel gıda bileşeni",
+      "adi_mg_per_kg_bw": null,
+      "regulation_last_updated": "",
+      "regulation_source_url": ""
+    },
+    "sources": [],
+    "person_special_info": [
+      { "person_type": "diyabetikler", "note": "Serbest şeker alımını sınırlayın; küçük porsiyon kullanın." },
+      { "person_type": "kalp_hastalari", "note": "Toplam sodyumu izleyin; serpiştirme dozunu düşük tutun." }
+    ]
+  },
+  {
+    "id": "bal_tuz_glazesi",
+    "slug": "bal_tuz_glazesi",
+    "core": {
+      "primary_name": "Bal-tuz glazesi",
+      "names": {
+        "tr": "Bal-tuz glazesi",
+        "en": "Honey-salt glaze",
+        "synonyms": [
+          "bal ve tuz glazesi",
+          "honey salt glaze",
+          "sweet salty glaze",
+          "bal-tuz kaplama",
+          "glaze (honey-salt)",
+          "bal tuz sosu",
+          "sweet&salty glaze",
+          "honey glaze with salt"
+        ]
+      },
+      "category": "temel_bilesen",
+      "subcategory": "",
+      "short_summary": "Bal ve tuz bazlı, yüzeye parlaklık ve ‘tatlı-tuzlu’ profil veren kaplama/glaze karışımıdır.",
+      "user_friendly_summary": "Kısa Vadeli Etkiler: Ürünün yüzeyini parlatır, tatlı-tuzlu çekicilik verir; çok azı bile belirgin etki sağlar. Aşırı kullanımda aşırı tatlı ve tuzlu, yapışkan bir yüzey oluşur.\n\nUzun Vadeli Riskler: Sık ve yüksek tüketim toplam sodyum ve şeker alımını artırır; tansiyon, diş sağlığı ve kalori fazlası açısından olumsuz olabilir. 1 yaş altı bebeklere bal içeren ürünler önerilmez. Kanserojen değildir.\n\nFaydalar (ne kadar sağlıklı?): Küçük bir fırça darbesiyle belirgin etki verdiğinden toplam kullanım miktarı düşük tutulabilir; ürünün ‘doyurucu’ algısını artırabilir ve başka yoğun soslara ihtiyaç azaltılabilir.\n\nYanlış Bilinenler: “Glaze demek yapaylık” doğru değildir; kaynak bal ve tuzdur (ilave bileşen etiketine bakın).\n\nPratik Öneri: İnce tabaka yeterlidir; pişirme sonunda kısa süre uygulamak yanmayı engeller; toplam tuz ve şeker hedeflerini dikkate alın.",
+      "icon_hint": "powder"
+    },
+    "identifiers": { "e_number": null },
+    "classification": {
+      "is_additive": false,
+      "origin_type": ""
+    },
+    "risk": {
+      "risk_score": 320,
+      "risk_factors": [
+        {
+          "title": "Yüksek sodyum alımı",
+          "groups_affected": ["genel", "kalp_hastalari", "bobrek_hastalari", "yaslilar"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Tuz eklenmesi toplam sodyumu artırır.",
+          "evidence": "",
+          "mitigation": "İnce fırça uygulaması; toplam sodyumu sınırlamak.",
+          "score": 200
+        },
+        {
+          "title": "Şeker/diş çürüğü ve kalori fazlası",
+          "groups_affected": ["genel", "cocuklar", "diyabetikler", "obez_bireyler"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Balın şekerleri enerji fazlası ve diş çürüğüne katkı sağlar.",
+          "evidence": "",
+          "mitigation": "Porsiyon kontrolü; tüketim sonrası suyla çalkalama.",
+          "score": 100
+        },
+        {
+          "title": "Bebeklerde botulizm riski (bal uyarısı)",
+          "groups_affected": ["bebekler"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Bal kaynaklı sporlar 1 yaş altı için risklidir.",
+          "evidence": "",
+          "mitigation": "1 yaş altına vermeyin.",
+          "score": 300
+        }
+      ],
+      "risk_explanation": "Baz senaryo (genel kullanıcı): sodyum (200) + şeker/diş-kalori (100) = 300; glaze uygulamasında ince tabaka varsayımıyla temkinli 320 verildi. Bebek riski özel gruba özgüdür; baz skora eklenmedi."
+    },
+    "health": {
+      "health_flags": ["lezzet_yukseltici"],
+      "claims": [{ "text": "", "authorized": false, "authority": "", "evidence_level": "", "note": "" }],
+      "safety_notes": "1 yaş altına uygun değildir; ince tabaka halinde uygulayın; pişirme sonunda kısa süre verin."
+    },
+    "allergen": { "allergen_flags": [], "note": "Arı ürünlerine/polenlere duyarlılığı olanlar dikkat etmelidir." },
+    "dietary": {
+      "vegan": false,
+      "vegetarian": true,
+      "halal": "supheli",
+      "kosher": null,
+      "gluten_free": true,
+      "lactose_free": true,
+      "diet_note": "Bal içerir; vegan değildir."
+    },
+    "usage": {
+      "where_used": ["atistirmaliklar", "fırıncilik", "et_marineleri", "kaplama_karisimlari"],
+      "common_roles": ["lezzet_yukseltici", "kaplama_glaze"],
+      "typical_amount": "Yüzeye ince fırça ile 1–3 g/porsiyon; reçetede %1–5"
+    },
+    "consumer": {
+      "myths": ["Glaze her zaman yapaydır."],
+      "label_names_alt": ["honey-salt glaze", "sweet & salty glaze"],
+      "faqs": [
+        "Yanmayı nasıl önlerim? — Pişirme sonunda kısa süre uygulayın veya düşük ısıyla karamelleştirin."
+      ]
+    },
+    "regulatory": {
+      "tr_status": "Genel gida",
+      "eu_status": "Genel gıda bileşeni",
+      "us_status": "Genel gıda bileşeni",
+      "adi_mg_per_kg_bw": null,
+      "regulation_last_updated": "",
+      "regulation_source_url": ""
+    },
+    "sources": [],
+    "person_special_info": [
+      { "person_type": "bebekler", "note": "1 yaş altına bal içeren ürünler verilmez." },
+      { "person_type": "diyabetikler", "note": "Serbest şeker içerir; porsiyonu küçük tutun." }
+    ]
+  },
+  {
+    "id": "bitkisel_tuz_karisimi",
+    "slug": "bitkisel_tuz_karisimi",
+    "core": {
+      "primary_name": "Bitkisel tuz karışımı",
+      "names": {
+        "tr": "Bitkisel tuz karışımı",
+        "en": "Herb salt blend",
+        "synonyms": [
+          "otlu tuz",
+          "herb salt",
+          "herbed salt",
+          "aromatik tuz karışımı",
+          "tuzlu ot karışımı",
+          "baharatlı tuz",
+          "ot-tuz karışımı",
+          "bitkisel tuz",
+          "h3rb salt"
+        ]
+      },
+      "category": "aroma",
+      "subcategory": "aroma_verici",
+      "short_summary": "Sofra tuzuna bitkisel baharat ve aromatiklerin eklenmesiyle elde edilen, ‘daha az tuzla daha çok tat’ hedefleyen karışımdır.",
+      "user_friendly_summary": "Kısa Vadeli Etkiler: Az miktarla güçlü koku ve tat verir; sade tuza göre daha aromatiktir. Aşırı kullanılırsa fazla tuzlu ve baharat baskın olabilir.\n\nUzun Vadeli Riskler: Sık ve yüksek kullanım toplam sodyumu artırır. Baharatlara duyarlılığı olanlarda rahatsızlık olabilir. Kanserojen değildir.\n\nFaydalar (ne kadar sağlıklı?): Aromatik yoğunluğu sayesinde aynı etkiyi daha az tuzla yakalamaya yardımcı olabilir; böylece toplam sodyumu azaltma stratejilerine destek olur.\n\nYanlış Bilinenler: “Otlu tuz = tuzsuz” değildir; yine de tuz içerir.\n\nPratik Öneri: Önce az serpiştirin, tadı kontrol ederek artırın; günlük sodyum hedefinizi izleyin.",
+      "icon_hint": "powder"
+    },
+    "identifiers": { "e_number": null },
+    "classification": {
+      "is_additive": false,
+      "origin_type": "mineral"
+    },
+    "risk": {
+      "risk_score": 260,
+      "risk_factors": [
+        {
+          "title": "Yüksek sodyum alımı",
+          "groups_affected": ["genel", "kalp_hastalari", "bobrek_hastalari", "yaslilar"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Tuz içeriği toplam sodyumu artırır.",
+          "evidence": "",
+          "mitigation": "Az serpiştirme; sodyumu günlük hedefle sınırlamak.",
+          "score": 200
+        },
+        {
+          "title": "Baharat duyarlılığı (nadir)",
+          "groups_affected": ["genel", "alerjik_bireyler", "cocuklar"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Bitkisel bileşenlere bireysel duyarlılık.",
+          "evidence": "",
+          "mitigation": "İlk kullanımda küçük miktar.",
+          "score": 60
+        },
+        {
+          "title": "Tat baskınlığı",
+          "groups_affected": ["genel"],
+          "condition": "asiri_doz",
+          "mechanism": "Baharat ve tuz bir arada baskın tat oluşturabilir.",
+          "evidence": "",
+          "mitigation": "Kademeli doz; servis öncesi son dokunuş.",
+          "score": 40
+        }
+      ],
+      "risk_explanation": "Baz senaryo: sodyum (200) + baharat duyarlılığı (60) = 260. Tat baskınlığı aşırı doza özgü olduğundan baz skora eklenmedi."
+    },
+    "health": {
+      "health_flags": ["tuz_ilavesiz_lezzet"],
+      "claims": [{ "text": "", "authorized": false, "authority": "", "evidence_level": "", "note": "" }],
+      "safety_notes": "Günlük sodyum hedefinizi aşmayın; baharatlara duyarlılığınız varsa dikkat edin."
+    },
+    "allergen": { "allergen_flags": [], "note": "İçerdiği bitkilere bağlı bireysel duyarlılık olabilir." },
+    "dietary": {
+      "vegan": true,
+      "vegetarian": true,
+      "halal": "supheli",
+      "kosher": null,
+      "gluten_free": true,
+      "lactose_free": true,
+      "diet_note": "Karışımdaki bitkiler üreticiye göre değişir; etiketi kontrol edin."
+    },
+    "usage": {
+      "where_used": ["baharat_karisimlari", "atistirmaliklar", "fırıncilik", "soslar"],
+      "common_roles": ["aroma_verici", "final_dokunus"],
+      "typical_amount": "Porsiyon başına 0.05–0.5 g serpiştirme"
+    },
+    "consumer": {
+      "myths": ["Otlu tuz tuzsuzdur."],
+      "label_names_alt": ["herb salt", "herbed salt"],
+      "faqs": [
+        "Normal tuzdan farkı? — Aynı sodyumu daha aromatik şekilde sunar; daha azı yeterli olabilir."
+      ]
+    },
+    "regulatory": {
+      "tr_status": "Genel gida",
+      "eu_status": "Genel gıda bileşeni",
+      "us_status": "Genel gıda bileşeni",
+      "adi_mg_per_kg_bw": null,
+      "regulation_last_updated": "",
+      "regulation_source_url": ""
+    },
+    "sources": [],
+    "person_special_info": [
+      { "person_type": "kalp_hastalari", "note": "Sodyumu sınırlayın; otlu tuzu da ölçülü kullanın." }
+    ]
+  },
+  {
+    "id": "aromali_tuz",
+    "slug": "aromali_tuz",
+    "core": {
+      "primary_name": "Aromalı tuz",
+      "names": {
+        "tr": "Aromalı tuz",
+        "en": "Flavored salt",
+        "synonyms": [
+          "aromalandırılmış tuz",
+          "flavoured salt",
+          "aroma tuzu",
+          "seasoned salt",
+          "smoked/flavored salt",
+          "aromalı sofra tuzu",
+          "aroma katkılı tuz",
+          "flavor salt",
+          "flvrd salt",
+          "sezoned salt"
+        ]
+      },
+      "category": "aroma",
+      "subcategory": "aroma_verici",
+      "short_summary": "Sofra tuzuna duman, narenciye, baharat veya diğer doğal/uyumlu aromaların eklenmiş halidir; küçük miktarda güçlü etki hedeflenir.",
+      "user_friendly_summary": "Kısa Vadeli Etkiler: Az serpiştirmeyle belirgin tat/koku etkisi sağlar; yemeğin son dokunuşunda pratik çözümdür. Aşırı kullanımda aşırı tuzlu ve baskın koku oluşur.\n\nUzun Vadeli Riskler: Sık ve yüksek kullanım toplam sodyumu artırır. Bazı aromalara duyarlılığı olan kişilerde baş ağrısı/burun rahatsızlığı olabilir. Kanserojen değildir; ‘duman aroması’ kullanılan ürünlerde düşük PAH’lı güvenilir tedarik tercih edilmelidir.\n\nFaydalar (ne kadar sağlıklı?): Koku/tat yoğunluğu sayesinde daha az tuzla benzer etkiyi verebilir; böylece sodyumu azaltma stratejilerine destek olabilir.\n\nYanlış Bilinenler: “Aromalı tuz = sağlıklı tuz” doğru değildir; sonuçta tuzdur, ölçü esastır.\n\nPratik Öneri: Önce az ekleyin, tadı kontrol ederek artırın; aroma kaynağı ve saflığını etiketten kontrol edin.",
+      "icon_hint": "powder"
+    },
+    "identifiers": { "e_number": null },
+    "classification": {
+      "is_additive": false,
+      "origin_type": "mineral"
+    },
+    "risk": {
+      "risk_score": 300,
+      "risk_factors": [
+        {
+          "title": "Yüksek sodyum alımı",
+          "groups_affected": ["genel", "kalp_hastalari", "bobrek_hastalari", "yaslilar"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Tuz içeriği toplam sodyumu artırır.",
+          "evidence": "",
+          "mitigation": "Az serpiştirme; günlük sodyumu sınırlamak.",
+          "score": 220
+        },
+        {
+          "title": "Aroma duyarlılığı/baş ağrısı",
+          "groups_affected": ["genel", "alerjik_bireyler", "astimlilar"],
+          "condition": "tipik_tuketim",
+          "mechanism": "Keskin aromalara duyarlılık bireyseldir.",
+          "evidence": "",
+          "mitigation": "İlk kullanımda küçük miktar; rahatsızlıkta kullanımı bırakmak.",
+          "score": 60
+        },
+        {
+          "title": "Duman aromalarında PAH endişesi (kaliteye bağlı)",
+          "groups_affected": ["genel"],
+          "condition": "yetersiz_uretici_kalitesi",
+          "mechanism": "Yetersiz arıtımda PAH düzeyleri daha yüksek kalabilir.",
+          "evidence": "",
+          "mitigation": "Düşük PAH spesifikasyonlu güvenilir tedarik seçmek.",
+          "score": 200
+        }
+      ],
+      "risk_explanation": "Baz senaryo: sodyum (220) + aroma duyarlılığı (60) = 280; duman aroması varsa PAH riski tedarik kalitesine bağlıdır, baz skora eklenmedi. Temkinli toplam risk 300 verildi."
+    },
+    "health": {
+      "health_flags": ["tuz_ilavesiz_lezzet"],
+      "claims": [{ "text": "", "authorized": false, "authority": "", "evidence_level": "", "note": "" }],
+      "safety_notes": "Aroma kaynağını/analizini kontrol edin (özellikle duman aroması); günlük sodyumu aşmayın."
+    },
+    "allergen": { "allergen_flags": [], "note": "Aromalara kişisel duyarlılık değişebilir." },
+    "dietary": {
+      "vegan": true,
+      "vegetarian": true,
+      "halal": "supheli",
+      "kosher": null,
+      "gluten_free": true,
+      "lactose_free": true,
+      "diet_note": "Aroma taşıyıcıları değişebilir; etiketi kontrol edin."
+    },
+    "usage": {
+      "where_used": ["baharat_karisimlari", "atistirmaliklar", "soslar", "fırıncilik"],
+      "common_roles": ["aroma_verici", "final_dokunus"],
+      "typical_amount": "Porsiyon başına 0.05–0.4 g serpiştirme"
+    },
+    "consumer": {
+      "myths": ["Aromalı tuz sağlıklıdır."],
+      "label_names_alt": ["flavored salt", "seasoned salt"],
+      "faqs": [
+        "Normal tuza göre farkı? — Aynı sodyumu daha aromatik şekilde sunar; daha azı yetebilir."
+      ]
+    },
+    "regulatory": {
+      "tr_status": "Genel gida",
+      "eu_status": "Genel gıda bileşeni/aroma",
+      "us_status": "Genel gıda bileşeni/aroma",
+      "adi_mg_per_kg_bw": null,
+      "regulation_last_updated": "",
+      "regulation_source_url": ""
+    },
+    "sources": [],
+    "person_special_info": [
+      { "person_type": "kalp_hastalari", "note": "Sodyumu sınırlayın; ‘aromalı’ olsa da ölçülü kullanın." }
+    ]
+  }

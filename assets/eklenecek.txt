@@ -1,0 +1,311 @@
+E100 Kurkumin,E101 Riboflavin,E101a Riboflavin 5'-fosfat,E102 Tartrazin,E104 Kinolin Sarısı,E110 Sunset Yellow FCF,E120 Karmin
+E122 Azorubin,E123 Amarant,E124 Ponceau 4R,E127 Eritrosin,E129 Allura Red AC,E131 Patent Blue V,E132 Indigotin
+E133 Brilliant Blue FCF,E140 Klorofil,E141 Klorofilinler,E142 Yeşil S,E150a Basit Karamel,E150b Katalizörlü Karamel,E150c Amonyak Karamel
+E150d Sülfitli Amonyak Karamel,E151 Siyah BN,E153 Bitkisel Karbon,E154 Kahverengi FK,E155 Kahverengi HT,E160a Beta Karoten,E160b Annatto
+E160c Paprika Ekstraktı,E160d Likopen,E160e Beta-apo-8'-karotenal,E161b Lutein,E161g Kantaksantin,E162 Pancar Kırmızısı,E163 Antosiyaninler
+E170 Kalsiyum Karbonat,E171 Titanyum Dioksit,E172 Demir Oksitler,E173 Alüminyum,E174 Gümüş,E175 Altın,E180 Lithol Rubine BK
+E200 Sorbik Asit,E202 Potasyum Sorbat,E203 Kalsiyum Sorbat,E210 Benzoik Asit,E211 Sodyum Benzoat,E212 Potasyum Benzoat,E213 Kalsiyum Benzoat
+E214 Etilparaben,E215 Propilparaben,E216 Metilparaben,E217 Sodyum Propilparaben,E218 Sodyum Metilparaben,E219 Sodyum Etilparaben,E220 Kükürt Dioksit
+E221 Sodyum Sülfit,E222 Sodyum Bisülfit,E223 Sodyum Metabisülfit,E224 Potasyum Metabisülfit,E226 Kalsiyum Sülfit,E227 Kalsiyum Bisülfit,E228 Potasyum Bisülfit
+E230 Difenil,E231 Orthofenilfenol,E232 Sodyum Orthofenilfenol,E233 Thiabendazol,E234 Nisin,E235 Natamisin,E236 Formik Asit
+E237 Sodyum Format,E238 Kalsiyum Format,E239 Hexamethylene Tetramine,E240 Formaldehit,E242 Dimetil Dikarbonat,E243 Ethyl Lauroyl Arginate,E249 Potasyum Nitrit
+E250 Sodyum Nitrit,E251 Sodyum Nitrat,E252 Potasyum Nitrat,E260 Asetik Asit,E261 Potasyum Asetat,E262 Sodyum Asetat,E263 Kalsiyum Asetat
+E264 Amonyum Asetat,E270 Laktik Asit,E280 Propiyonik Asit,E281 Sodyum Propiyonat,E282 Kalsiyum Propiyonat,E283 Potasyum Propiyonat,E284 Borik Asit
+E285 Sodyum Borat,E290 Karbon Dioksit,E296 Malik Asit,E297 Fumarik Asit,E300 Askorbik Asit,E301 Sodyum Askorbik,E302 Kalsiyum Askorbik
+E303 Potasyum Askorbik,E304 Askorbik Asit Esters,E306 Tokoferol,E307 Alfa Tokoferol,E308 Gamma Tokoferol,E309 Delta Tokoferol,E310 Propil Gallat
+E311 Oktil Gallat,E312 Dodesil Gallat,E315 Eritorbik Asit,E316 Sodyum Eritorbat,E320 BHA,Butil Hidroksi Anisol,E321 BHT
+Butil Hidroksi Toluen,E322 Lesitin,E325 Sodyum Laktat,E326 Potasyum Laktat,E327 Kalsiyum Laktat,E330 Sitrik Asit,E331 Sodyum Sitrat
+E332 Potasyum Sitrat,E333 Kalsiyum Sitrat,E334 Tartarik Asit,E335 Sodyum Tartrat,E336 Potasyum Tartrat,E337 Sodyum Potasyum Tartrat,E338 Fosforik Asit
+E339 Sodyum Fosfatlar,E340 Potasyum Fosfatlar,E341 Kalsiyum Fosfatlar,E343 Magnezyum Fosfatlar,E350 Sodyum Malat,E351 Potasyum Malat,E352 Kalsiyum Malat
+E353 Metatartarik Asit,E354 Kalsiyum L-Malat,E355 Adipik Asit,E356 Potasyum Adipat,E357 Kalsiyum Adipat,E363 Suksinik Asit,E365 Sodyum Fumarat
+E366 Potasyum Fumarat,E367 Kalsiyum Fumarat,E370 1,4-Heptalakton,E375 Nikotinik Asit,E380 Triammonium Citrate,E381 Ammonium Ferric Citrate,E385 Kalsiyum Disodyum EDTA
+E400 Alginik Asit,E401 Sodyum Alginat,E402 Potasyum Alginat,E403 Amonyum Alginat,E404 Kalsiyum Alginat,E405 Propilen Glikol Aljinat,E406 Agar
+E407 Karragenan,E407a İşlenmiş Eucheuma Alg,E410 Karob Gam,E412 Guar Gam,E413 Tragacanth,E414 Arap Gamı,E415 Ksantan Gam
+E416 Karaya Gam,E417 Tara Gam,E418 Gellan Gam,E420 Sorbitol,E421 Mannitol,E422 Gliserol,E423 Amonyum Sülfat
+E424 Kalsiyum Sülfat,E425 Konjac,E426 Soybean Polysaccharides,E427 Cassia Gum,E428 Gelatinized Starch,E429 Peptik Hidrolizat,E430 Polyoxyethylene (8) Stearate
+E431 Polyoxyethylene (40) Stearate,E432 Polisorbat 20,E433 Polisorbat 80,E434 Polisorbat 40,E435 Polisorbat 60,E436 Polisorbat 65,E440 Pektin
+E441 Jelatin,E442 Amonyum Fosfatitler,E444 Sakkaroz Asetat İzobutirat,E445 Gliserol Esterleri,E446 Sukroz Poliesters,E450 Difosfatlar,E451 Trifosfatlar
+E452 Polifosfatlar,E453 Octenyl Succinic Acid Modified Starch,E454 Polyvinyl Alcohol,E455 Sodyum Stearoyl-2-Lactylate,E456 Polyglycerol Polyricinoleate,E459 Beta-cyclodextrin,E460 Selüloz
+E461 Metilselüloz,E462 Etilselüloz,E463 Hidroksipropilselüloz,E464 Hidroksipropilmetilselüloz,E465 Etiletilselüloz,E466 Karboksimetilselüloz,E468 Crosslinked Sodium Carboxymethylcellulose
+E469 Enzimle Değiştirilmiş Selüloz,E470a Sodyum, Potasyum ve Kalsiyum Tuzları,E470b Magnezyum Tuzları,E471 Mono ve Digliseritler,E472a Asetik Asit Esterleri,E472b Laktik Asit Esterleri,E472c Sitrik Asit Esterleri
+E472d Tartarik Asit Esterleri,E472e Mono and Diacetyltartaric Acid Esters,E472f Mixed Esters,E473 Sucrose Esters of Fatty Acids,E474 Sucroglycerides,E475 Poligliserol Esterleri,E476 Poligliserol Polirisinoleat
+E477 Propilen Glikol Esterleri,E478 Laktil Gliserol Esterleri,E479b Termal Oksitlenmiş Soya Yağı Asitleri,E480 Dioctyl Sodium Sulfosuccinate,E481 Sodyum Stearoyl Laktilat,E482 Kalsiyum Stearoyl Laktilat,E483 Stearoyl Tartrates
+E491 Sorbitan Monostearate,E492 Sorbitan Tristearate,E493 Sorbitan Monolaurate,E494 Sorbitan Monooleate,E495 Sorbitan Monopalmitate,E496 Polyvinylpolypyrrolidone,E500 Sodyum Karbonatlar
+E501 Potasyum Karbonatlar,E503 Amonyum Karbonatlar,E504 Magnezyum Karbonatlar,E507 Hidroklorik Asit,E508 Potasyum Klorür,E509 Kalsiyum Klorür,E510 Amonyum Klorür
+E511 Magnezyum Klorür,E512 Stannous Chloride,E513 Sülfürik Asit,E514 Sodyum Sülfatlar,E515 Potasyum Sülfatlar,E516 Kalsiyum Sülfatlar,E517 Amonyum Sülfatlar
+E518 Magnezyum Sülfatlar,E519 Bakır Sülfatlar,E520 Alüminyum Sülfatlar,E521 Alum Potasyum,E522 Alum Ammonium,E523 Alum Sodium,E524 Sodyum Hidroksit
+E525 Potasyum Hidroksit,E526 Kalsiyum Hidroksit,E527 Amonyum Hidroksit,E528 Magnezyum Hidroksit,E529 Kalsiyum Oksit,E530 Magnezyum Oksit,E535 Sodyum Ferrocyanide
+E536 Potasyum Ferrocyanide,E538 Kalsiyum Ferrocyanide,E540 Dicalcium Diphosphate,E541 Sodium Aluminium Phosphate,E542 Bone Phosphate,E543 Sodium Polyphosphate,E544 Potassium Polyphosphate
+E545 Calcium Polyphosphate,E546 Ammonium Polyphosphate,E550 Sodyum Silikat,E551 Silikon Dioksit,E552 Kalsiyum Silikat,E553a Magnesium Silicate,E553b Talc
+E554 Sodyum Alüminyum Silikat,E555 Potasyum Alüminyum Silikat,E556 Kalsiyum Alüminyum Silikat,E558 Bentonite,E559 Aluminium Phosphates,E570 Yağ Asitleri,E572 Magnezyum Stearat
+E573 Stearic Acid,E574 Calcium Stearate,E575 Glukonodeltalakton,E576 Sodyum Glukonat,E577 Potasyum Glukonat,E578 Kalsiyum Glukonat,E579 Ferrous Gluconate
+E585 Ferrous Lactate,E586 Sodium Iron EDTA,E600 Potassium Ferrocyanide,E620 Glutamik Asit,E621 Monosodyum Glutamat,E622 Monopotasyum Glutamat,E623 Kalsiyum Glutamat
+E624 Monoammonium Glutamat,E625 Magnesium Glutamate,E626 Guanilic Asit,E627 Sodyum Guanilat,E628 Dipotasyum Guanilat,E629 Kalsiyum Guanilat,E630 Inosinic Asit
+E631 Sodyum Inosinat,E632 Dipotasyum Inosinat,E633 Kalsiyum Inosinat,E634 Calcium 5'-ribonucleotide,E635 Disodium 5'-ribonucleotide,E640 Glycine and its sodium salt,E641 Methionine
+E650 Zinc Acetate,E900 Dimetilpolisiloksan,E901 Arı Mumu,E902 Candelilla Mumu,E903 Carnauba Mumu,E904 Shellac,E905a Mineral Oil
+E905b Petrolatum,E905c Paraffin Wax,E906 Benzoin,E907 Poly-1-Decene,E908 Rice Bran Wax,E909 Sunflower Wax,E910 Vegetable Oil
+E911 Synthetic Wax,E912 Montan Acid Waxes,E913 Lanolin,E914 Oxidised Polyethylene Wax,E920 L-cysteine,E921 L-cysteine Hydrochloride,E922 Potassium Persulphate
+E923 Ammonium Persulphate,E924a Potassium Bromate,E924b Calcium Bromate,E925 Chlorine,E926 Chlorine Dioxide,E927a Karbamid,E927b Azodicarbonamide
+E928 Benzoyl Peroxide,E929 Acetone Peroxide,E930 Perchloric Acid,E931 Nitrous Oxide,E932 Propane,E933 Butane,E934 Isobutane
+E935 Sulphur Hexafluoride,E936 Carbon Hexafluoride,E937 Hydrogen,E938 Argon,E939 Helium,E940 Dichlorodifluoromethane,E941 Nitrogen
+E942 Dinitrogen Oxide,E943a Butadiene,E943b Isobutene,E944 Propane,E945 Chloropentafluoroethane,E946 Octafluorocyclobutane,E948 Oxygen
+E949 Hydrogen,E950 Acesulfam K,E951 Aspartam,E952 Siklamat,E953 İzomalt,E954 Sakarin,E955 Sukraloz
+E956 Alitam,E957 Taumatin,E958 Glisin,E959 Neohesperidin DC,E960 Steviol Glikozidler,E961 Neotam,E962 Aspartam-Acesulfam Tuzları
+E963 Advantam,E964 Poliglikol,E965 Maltitol,E966 Laktilol,E967 Ksilitol,E968 Eritritol,E969 Isomaltulose
+E970 D-Tagatose,E999 Quillaia Ekstraktı,E1000 Cholic Acid and its sodium salt,E1001 Acidic Sodium Caseinate,E1002 Potassium Caseinate,E1003 Alginate Propylene Glycol Ester,E1004 Acetylated Distarch Phosphate
+E1103 Invertase,E1104 Lipase,E1200 Polydextrose,E1201 Polyvinylpyrrolidone,E1202 Polyvinylpolypyrrolidone,E1203 Polyethylene Glycol,E1204 Pullulan
+E1205 Basic Methacrylate Copolymer,E1206 Sodium Alginate Propylene Glycol Ester,E1207 Polyvinyl Alcohol,E1208 Polyacrylic Acid,E1209 Polyvinylidene Chloride,E1400 Dextrin,E1401 Acid Treated Starch
+E1402 Alkaline Treated Starch,E1403 Bleached Starch,E1404 Oxidised Starch,E1405 Enzyme Treated Starch,E1410 Monostarch Phosphate,E1412 Distarch Phosphate,E1413 Phosphated Distarch Phosphate
+E1414 Acetylated Distarch Phosphate,E1420 Starch Acetate,E1422 Acetylated Distarch Adipate,E1440 Hydroxypropyl Starch,E1442 Hydroxypropyl Distarch Phosphate,E1450 Starch Sodium Octenyl Succinate,E1505 Triethyl Citrate
+E1517 Glycerol Acetate,E1518 Glyceryl Triacetate,E1519 Benzyl Alcohol,E1520 Propylene Glycol
+Sükroz,Sofra şekeri,Kristal şeker,Toz şeker,Pudra şekeri,Esmer şeker,Koyu esmer şeker
+Pancar şekeri,Kamış şekeri,Demerara şekeri,Muscovado şekeri,Turbinado şekeri,Palm şekeri,Hindistan cevizi şekeri
+Jaggery,Panela,Hurma şekeri,Hurma tozu,Pekmez,Üzüm pekmezi,Dut pekmezi
+Keçiboynuzu pekmezi,Harnup pekmezi,Pancar pekmezi,Nar ekşisi,Akçaağaç şurubu,Sorgum şurubu,Yakon şurubu
+Agave şurubu,Agave nektarı,Mısır şurubu,Yüksek fruktozlu mısır şurubu,HFCS-55,Glikoz-fruktoz şurubu,Fruktoz-glikoz şurubu
+İnvert şeker şurubu,İnvert şeker,Altın şurup,Karamel şurubu,Kara şurup,Molas (melas),Blackstrap melas
+Kahverengi pirinç şurubu,Pirinç şurubu,Pirinç malt şurubu,Arpa malt şurubu,Malt şurubu,Malt ekstraktı,Malt özütü
+Arpa maltı özü,Yulaf şurubu,Yulaf malt özütü,Tapiyoka şurubu,Glikoz şurubu,Yüksek maltoslu mısır şurubu,Dekstroz eşdeğeri şurup
+Glikoz,Dekstroz,Fruktoz,Kristal fruktoz,Galaktoz,Maltose,Laktoz
+İzomaltuloz,Trehaloz,Tagatoz,Arabinoz,Mannoz,Ksüloz,Rafinoz
+Sakkaroz monohidrat,Şeker kamışı suyu,Şeker kamışı şurubu,Şeker pancarı şurubu,Konsantre üzüm suyu,Konsantre elma suyu,Konsantre armut suyu
+Elma püresi konsantresi,Meyve suyu konsantresi,Doğal meyve şurubu,Bal,Çiçek balı,Çam balı,Manuka balı
+Ham bal,Stevia yaprağı,Steviol glikozitleri,Reb A,Monk fruit ekstraktı,Luo Han Guo ekstresi,Yakon kök tozu
+Kurutulmuş şeker kamışı suyu,Hindistan cevizi nektarı,Hindistan cevizi şurubu,Kokos şeker kristali,Hurma pekmez şurubu,Keçiboynuzu tozu,Keçiboynuzu özü
+Şerbet şekeri,Şeker şurubu,Basit şurup,Konsantre şeker şurubu,Şurup katı maddeleri,Şeker çözeltisi,Şekerli invert şurup
+Glikoz katıları,Fruktoz katıları,Mısır katıları,Yüksek fruktozlu şurup katıları,Maltodekstrin,Püskürtme kurutulmuş glikoz şurubu,Karamelize şeker
+Karamelize şeker şurubu,Kahverengi şeker şurubu,Golden syrup,Maple syrup,Date syrup,Carob syrup,Grape molasses
+Apple juice concentrate,Fruit juice concentrate,Rice syrup,Brown rice syrup,Barley malt extract,Tapioca syrup,Coconut sugar
+Coconut nectar,Palm sugar,Cane sugar,Beet sugar,Invert sugar,Isoglukoz,HFCS
+High fructose corn syrup,Glucose syrup solids,Corn syrup solids,Spray dried glucose syrup,Liquid sugar,Liquid sucrose,Liquid invert sugar
+Inulin,Hindiba lifi,Fruktooligosakkarit (FOS),Oligofruktoz,Galaktooligosakkarit (GOS),Laktüloz,Xylo-oligosakkarit (XOS)
+Mannan-oligosakkarit (MOS),Pektik oligosakkarit (POS),İzomaltooligosakkarit (IMO),Arabinogalaktan,Beta-glukan (yulaf),Beta-glukan (arpa),Psyllium kabuğu
+Psyllium tozu,Kısmi hidrolize guar gam (PHGG),Guar gam lifi,Akasya lifi (gum arabic),Arap zamkı,Rezistan nişasta Tip 2,Rezistan nişasta Tip 3
+Rezistan nişasta Tip 4,Rezistan nişasta Tip 5,Rezistan dekstrin,Çözünür mısır lifi,Çözünür buğday lifi,Çözünür tapiyoka lifi,Buğday kepeği
+Yulaf kepeği,Arpa kepeği,Pirinç kepeği,Mısır kepeği,Elma lifi,Elma posası lifi,Narenciye lifi
+Limon lifi,Portakal lifi,Greyfurt lifi,Bambu lifi,Bezelye lifi,Patates lifi,Havuç lifi
+Domates lifi,Şeker kamışı lifi,Kakao kabuğu lifi,Kakao lifi,Üzüm çekirdeği lifi,Üzüm posası lifi,Yaban mersini posası lifi
+Ahududu posası lifi,Kenevir lifi,Keten tohumu öğütülmüş,Chia tohumu öğütülmüş,Yeşil muz unu,Plantain unu,Yacon kök tozu
+Yer elması tozu,Baobab tozu,Tigernut unu,Karob lifi,Keçiboynuzu lifi,Karob tozu,Moringa yaprak tozu
+Spirulina tozu (lif fraksiyonu),Chlorella tozu (lif fraksiyonu),Deniz yosunu lifi,Aljinat,Sodyum aljinat,Glukomannan (konjak),Konjak unu
+Galaktomannan,Çemen lifi,Pektin,Elma pektini,Narenciye pektini,Lignin lifi,Selüloz lifi
+Mikrokristalin selüloz (MCC),Hidrolize selüloz,Oligosakkarit karışımı,Prebiyotik lif karışımı,FOS+Inulin karışımı,Beta-fruktozans,Arabinoksilan
+Arabinoksilan oligosakkaritleri (AXOS),Kitosan oligosakkaritleri (COS),Kitosan,Chitin-glukan kompleksi,HMO 2'-Fukosillaktoz (2'-FL),HMO Lacto-N-neotetraose (LNnT),HMO 3'-Sialyllaktoz (3'-SL)
+HMO 6'-Sialyllaktoz (6'-SL),HMO 3'-Galaktosillaktoz (3'-GL),HMO karışımı,Laktitol,Malto-oligosakkaritler,Dextrin,Maltodekstrin (prebiyotik)
+Yulaf beta-glukan konsantresi,Arpa beta-glukan konsantresi,Yeşil kahve posası lifi,Kahve posası lifi,Turunçgil posası,Muz lifi,Kuru domates posası
+Soğan lifi,Sarımsak lifi,Enginar lifi,Pancar posası lifi,Şalgam lifi,Brokoli lifi,Kereviz lifi
+Kinoa lifi,Amarant lifi,Teff lifi,Sorghum lifi,Fonksiyonel lif tozu,Prebiyotik nişasta,Maya lifi (inaktif)
+Maya hücre duvarı fraksiyonu,Lentinan,Shiitake mantar lifi,Pleurotus mantar lifi,Ekmek mayası beta-glukanı,Fermente tahıl lifi,Isırgan otu lifi
+Whey protein konsantresi (WPC),Whey protein izolatı (WPI),Whey protein hidrolizatı,Native whey protein izolatı,Çim beslemeli whey izolatı,Kazein,Misellar kazein
+Kalsiyum kazeinat,Sodyum kazeinat,Potasyum kazeinat,Hidrolize kazein,Süt proteini konsantresi (MPC),Süt proteini izolatı (MPI),Peynir altı suyu permeatı
+Laktoferrin,Alfa-laktalbumin,Beta-laktoglobulin,Kolostrum tozu,Peynir altı suyu peptitleri,Süt serum proteini,Yumurta akı proteini
+Yumurta akı tozu,Yumurta albümini,Yumurta proteini hidrolizatı,Jelatin,Hidrolize jelatin,Sığır kolajen peptitleri,Otla beslenmiş kolajen peptitleri
+Marine kolajen peptitleri,Balık kolajeni,Tavuk kolajeni (Tip II),Kolajen hidrolizatı,Elastin hidrolizatı,Keratin hidrolizatı,Kolajen Tip I
+Kolajen Tip II,Kolajen Tip III,Kolajen peptit karışımı,Soya proteini izolatı,Soya proteini konsantresi,Tekstüre soya proteini,Hidrolize soya proteini
+Soya peptitleri,Bezelye proteini izolatı,Bezelye proteini konsantresi,Bezelye peptitleri,Pirinç proteini izolatı,Kahverengi pirinç proteini,Pirinç peptitleri
+Kenevir proteini,Kenevir tohum proteini,Kabak çekirdeği proteini,Ayçiçeği çekirdeği proteini,Susam proteini,Fıstık proteini,Badem proteini
+Fındık proteini,Fava fasulyesi proteini,Nohut proteini,Mercimek proteini,Mung fasulyesi proteini,Patates proteini izolatı,Patates proteini hidrolizatı
+Kanola proteini izolatı,Kolza proteini,Buğday proteini izolatı,Vital gluten,Hidrolize buğday proteini,Arpa proteini,Yulaf proteini
+Mısır proteini (zein),Zein,Amarant proteini,Kinoa proteini,Chia proteini,Keten proteini,Lupin proteini
+Spirulina proteini,Chlorella proteini,Alg proteini,Tek hücre proteini,Maya proteini,Hidrolize maya proteini,Mykoprotein
+Mantardan türetilmiş protein,İnsekt proteini,Cırcır böceği proteini,Kara asker sineği proteini,Sığır proteini izolatı,Tavuk proteini izolatı,Hidrolize et proteini
+Hidrolize balık proteini,Hidrolize deniz ürünü proteini,Hidrolize bitkisel protein (HVP),Hidrolize sebze proteini,Sığır jelatini,Yumurta sarısı proteini,Plazma proteini
+Süt türevi dipeptitler,BCAA karışımı,L-lösin,L-izolösin,L-valin,L-glutamin,L-glutamik asit
+L-aspartik asit,L-asparajin,L-serin,L-treonin,L-metionin,L-fenilalanin,L-tirosin
+L-triptofan,L-histidin,L-lizin HCl,L-arginin,L-sitrülin,L-ornitin,L-prolin
+Hidroksiprolin,Glisin,Taurin,Beta-alanin,Kreatin monohidrat,Kreatin HCl,Kreatin magnezyum şelatı
+Kreatin nitrat,HMB (beta-hidroksi beta-metilbütirat),L-karnitin,L-karnitin L-tartrat,Asetil L-karnitin,N-asetil L-sistein (NAC),L-sistein
+L-sistein hidroklorür,L-alanin,L-alanyl-L-glutamin,L-ornitin alfa-ketoglutarat,L-sitrülin malat,L-teanin,Betaine (trimetilglisin)
+Glutatyon (indirgenmiş),Kollajen tripeptitleri,Elastin peptitleri,Keratin peptitleri,Süt mineral proteini kompleks,Peptid bağlı lösin,Peptid bağlı glutamin
+Peptid bağlı arginin,HMB kalsiyum tuzu,HMB serbest asit,Alfa-ketoglutarat (AKG),Citrulline peptidi,Fenilalanin peptitleri,Triptofan peptitleri
+Retinol,Retinyl asetat,Retinyl palmitat,Retinyl propiyonat,Beta karoten,Alfa karoten,Lutein
+Zeaksantin,Likopen,Astaksantin,Beta apo-8'-karotenal,Kolekalsiferol (D3),Ergokalsiferol (D2),25-hidroksikolekalsiferol
+Kalsitriol,D3 mikroenkapsüle,D-alfa tokoferol,DL-alfa tokoferol,D-alfa tokoferil asetat,D-alfa tokoferil süksinat,Tokoferol karışımı
+Alfa tokoferol,Gamma tokoferol,Delta tokoferol,Tokotrienoller karışımı,Alfa tokotrienol,Gamma tokotrienol,Tokoferil fosfat
+Tokoferil nikotinat,Filokinon (K1),Menakinon-4 (MK-4),Menakinon-7 (MK-7),Menakinon-9 (MK-9),Askorbik asit,Sodyum askorbat
+Kalsiyum askorbat,Magnezyum askorbat,Potasyum askorbat,Askorbil palmitat,Askorbil stearat,Ester-C (kalsiyum askorbat treonat),Sodyum askorbil fosfat
+Kalsiyum askorbil fosfat,Tiamin hidroklorür,Tiamin mononitrat,Tiamin pirofosfat,Benfotiamin,Riboflavin,Riboflavin 5'-fosfat
+Flavin mononükleotid,Niasin,Niasinamid,İnositol hekzanikotinat,Nikotinamid ribozid,Nikotinamid mononükleotid (NMN),Kalsiyum D-pantotenat
+Pantotenik asit,Panthenol,Pantethein,Piridoksin hidroklorür,Piridoksal 5'-fosfat (P5P),Piridoksamin,Biotin
+Miyoinositol,D-kiro-inositol,Folik asit,L-metilfolat kalsiyum,L-metilfolat glukozamin,Folinik asit,5-metil tetrahidrofolat
+Tetrahidrofolat,Siyanokobalamin,Metilkobalamin,Adenosilkobalamin,Hidroksokobalamin,B12 mikroenkapsüle,Kolin bitartrat
+Kolin klorür,Kolin sitrat,Alfa GPC,Sitikolin (CDP-kolin),Fosfatidilkolin,PABA,Koenzim Q10 (ubikinon)
+Ubikinol,Alfa lipoik asit,Dihidrolipoik asit,L-karnitin,Asetil L-karnitin,L-karnitin L-tartrat,L-karnitin fumarat
+Kalsiyum karbonat,Kalsiyum sitrat,Kalsiyum malat,Kalsiyum sitrat malat,Kalsiyum laktat,Kalsiyum glukonat,Kalsiyum gliserofosfat
+Dikaltsyum fosfat,Trikalsiyum fosfat,Kalsiyum pirofosfat,Kalsiyum asetat,Kalsiyum laktat glukonat,Kalsiyum orotat,Kalsiyum pidolat
+Kalsiyum amino asit şelatı,Kalsiyum hidroksiapatit,Magnezyum oksit,Magnezyum sitrat,Magnezyum malat,Magnezyum glisinat,Magnezyum bisglisinat
+Magnezyum treonat,Magnezyum laktat,Magnezyum taurat,Magnezyum aspartat,Magnezyum fumarat,Magnezyum karbonat,Magnezyum sülfat
+Magnezyum klorür,Magnezyum orotat,Magnezyum pidolat,Magnezyum glukonat,Potasyum klorür,Potasyum sitrat,Potasyum bikarbonat
+Potasyum fosfat,Potasyum glukonat,Potasyum laktat,Potasyum iyodür,Sodyum klorür,Sodyum sitrat,Sodyum bikarbonat
+Sodyum fosfat,Sodyum molibdat,Sodyum selenit,Sodyum selenat,Demir sülfat,Demir fumarat,Demir glukonat
+Demir bisglisinat,Demir laktat,Demir pirofosfat,Karbonil demir,Demir sitrat,Heme demir polipeptit,Demir orotat
+Ferröz asetat,Ferröz klorür,Çinko oksit,Çinko glukonat,Çinko sülfat,Çinko pikolinat,Çinko sitrat
+Çinko bisglisinat,Çinko asetat,Çinko orotat,Çinko metiyonin,Çinko laktat,Çinko karbonat,Selenometiyonin
+Selenosistein,Selenize maya,Metilselenosistein,Bakır sülfat,Bakır glukonat,Bakır bisglisinat,Bakır sitrat
+Bakır orotat,Bakır klorür,Bakır amino asit şelatı,Manganez sülfat,Manganez glukonat,Manganez sitrat,Manganez bisglisinat
+Manganez karbonat,Manganez orotat,Krom pikolinat,Krom polinikotinat,Krom klorür,Krom maya,Krom GTF kompleksi
+Amonyum molibdat,Molibden glisinat,Molibden sitrat,Potasyum iyodat,Sodyum iyodür,Kelp ekstraktı (iyot),İyotlu tuz
+Kalsiyum frukto borat,Boron sitrat,Boron glisinat,Ortosilisik asit,Stabilize ortosilisik asit,Kolloidal silika,Bambus silika ekstraktı
+At kuyruğu ekstraktı (silika),Vanadil sülfat,Lityum orotat,Silika jel,Elektrolit karışımı,Mineraller kompleks,İz element karışımı
+Çinko glisinat,Magnezyum glisinat şelatı,Kalsiyum glisinat,Demir glisinat,Multi vitamin premiksi,Vitamin karışımı,Biyoaktif mineral karışımı
+Doğal aroma,Doğal vanilya aroması,Vanilya ekstraktı,Vanilin,Etil vanilin,Kakao tozu,Kakao likörü
+Kakao kitlesi,Kakao yağı aroması,Kahve ekstraktı,Instant kahve,Yeşil kahve ekstraktı,Kahve konsantresi,Çay ekstraktı
+Yeşil çay ekstraktı,Siyah çay ekstraktı,Matcha tozu,Mate yaprağı ekstraktı,Rooibos ekstraktı,Duman aroması,Sıvı duman
+Hickory smoke flavor,Meşe duman aroması,Mezkit duman aroması,Maya özü,Ototilize maya özü,Hidrolize maya proteini,Hidrolize bitkisel protein
+Hidrolize soya proteini,Hidrolize buğday proteini,Hidrolize mısır proteini,Hidrolize bezelye proteini,Umami aroması,Fermente soya aroması,Soya sosu tozu
+Tamari tozu,Miso tozu,Balık sosu tozu,İstiridye sosu aroması,Karides ekstraktı,Tavuk aroması,Sığır aroması
+Kavrulmuş et aroması,Mantar tozu,Porçini tozu,Shiitake ekstraktı,Trüf aroması,Trüf yağı,Deniz yosunu tozu
+Kombu ekstraktı,Wakame ekstraktı,Nori tozu,Domates tozu,Domates ekstraktı,Soğan tozu,Karamelize soğan tozu
+Soğan ekstraktı,Sarımsak tozu,Sarımsak ekstraktı,Pırasa tozu,Kereviz tozu,Kereviz ekstraktı,Havuç tozu
+Havuç ekstraktı,Biber ekstraktı,Capsicum oleoresin,Paprika oleoresin,Biberiye yağı,Biberiye ekstraktı,Kekik yağı
+Kekik ekstraktı,Mercanköşk yağı,Fesleğen yağı,Fesleğen ekstraktı,Maydanoz ekstraktı,Dereotu yağı,Kişniş tohumu yağı
+Kimyon yağı,Kimyon ekstraktı,Rezene yağı,Anason yağı,Yıldız anason ekstraktı,Karabiber yağı,Beyaz biber ekstraktı
+Zencefil tozu,Zencefil ekstraktı,Zerdeçal tozu,Zerdeçal ekstraktı,Tarçın tozu,Tarçın ekstraktı,Karanfil yağı
+Muskat yağı,Kakule yağı,Kakule ekstraktı,Yenibahar tozu,Hardal tozu,Hardal ekstraktı,Defne yaprağı tozu
+Biberiye oleoresin,Kekik oleoresin,Sarımsak oleoresin,Soğan oleoresin,Limon yağı,Portakal yağı,Limon kabuğu ekstraktı
+Portakal kabuğu ekstraktı,Greyfurt yağı,Mandalina yağı,Limon otu yağı,Bergamot yağı,Yuzu ekstraktı,Nane yağı
+Mentol,Nane ekstraktı,Spearmint yağı,Adaçayı yağı,Lavanta yağı,Gül suyu,Gül aroması
+Portakal çiçeği suyu,Bal aroması,Karamel aroması,Karamelize şeker aroması,Fırın karamel aroması,Maltol,Etil maltol
+Maya beta glukan ekstraktı,Nükleotit karışımı,Disodyum inosinat,Disodyum guanilat,Disodyum 5'-ribonükleotidler,İnosi̇n monofosfat (IMP),Guanozin monofosfat (GMP)
+Adenozin monofosfat (AMP),Sodyum 5'-inosinat,Sodyum 5'-guanilat,Maya RNA ekstraktı,Fermente tahıl aroması,Kavrulmuş fındık aroması,Kavrulmuş badem aroması
+Alfa-amilaz,Beta-amilaz,Maltogenik amilaz,Glukoamilaz,Amiloglukosidaz,Pullulanaz,Alfa-galaktozidaz
+Beta-galaktozidaz (laktaz),Laktaz,İnvertaz,Glukoz izomeraz,Pektinaz,Poligalakturonaz,Pektat liyaz
+Selülaz,Hemiselülaz,Ksilanaz,Beta-glukanaz,Arabinofuranosidaz,Proteaz (nötral),Proteaz (asit)
+Proteaz (alkalin),Tripsin,Kimotripsin,Papain,Bromelain,Ficin,Pepsin
+Pancreatin,Kollajenaz,Elastaz,Renin (şirden mayası),Şirden özütü,Mikrobiyal kimozin,Transglutaminaz
+Lipaz,Fosfolipaz,Lipoksigenaz,Peroksidaz,Glukoz oksidaz,Katalaz,Lisozim
+Tirozinaz,Tannaz,Fitaz,Ureaz,L-asparaginaz,Oksidaz karışımı,Dehidrogenaz karışımı
+Laktat dehidrogenaz,Malat dehidrogenaz,Oksidoredüktaz kompleksi,Dekarboksilaz,Asetolaktat dekarboksilaz,Süksinat dehidrogenaz,Asetilesteraz
+Esteraz,Aldolaz,İzoamilaz,Galaktoziltransferaz,Glikoziltransferaz,Naringinaz,Beta-manozidaz
+Alfa-manozidaz,Beta-fruktofuranozidaz,Sialidaz (nöraminidaz),Lakkaz,Pektin metilesteraz,Amilopektinaz,Amilopullulanaz
+Disakkaridaz karışımı,Oligosakkaridaz,Beta-sitozidaz,Arabanaz,Endoglukanaz,Ekzoglukanaz,Mannanaz
+Alfa-l-arabinosidaz,Lactobacillus acidophilus,Lactobacillus rhamnosus GG,Lactobacillus rhamnosus,Lactobacillus casei,Lactobacillus paracasei,Lactobacillus plantarum
+Lactobacillus fermentum,Lactobacillus reuteri,Lactobacillus helveticus,Lactobacillus delbrueckii subsp. bulgaricus,Lactobacillus gasseri,Lactobacillus crispatus,Lactobacillus johnsonii
+Lactococcus lactis subsp. lactis,Lactococcus lactis subsp. cremoris,Streptococcus thermophilus,Bifidobacterium lactis,Bifidobacterium longum,Bifidobacterium breve,Bifidobacterium bifidum
+Bifidobacterium infantis,Bifidobacterium adolescentis,Bifidobacterium animalis,Leuconostoc mesenteroides,Leuconostoc citreum,Pediococcus acidilactici,Pediococcus pentosaceus
+Oenococcus oeni,Propionibacterium freudenreichii,Propionibacterium shermanii,Bacillus coagulans,Bacillus subtilis,Bacillus licheniformis,Bacillus clausii
+Bacillus indicus,Bacillus pumilus,Saccharomyces cerevisiae,Saccharomyces boulardii,Kluyveromyces marxianus,Debaryomyces hansenii,Brettanomyces bruxellensis
+Torula mayası,Aspergillus oryzae,Aspergillus niger,Aspergillus awamori,Rhizopus oligosporus,Rhizopus oryzae,Penicillium roqueforti
+Penicillium camemberti,Penicillium nalgiovense,Geotrichum candidum,Mucor miehei,Mucor pusillus,Monascus purpureus,SCOBY kültürü
+Kefir taneleri,Kefir kültürü,Kombucha kültürü,Natto kültürü,Tempeh kültürü,Kimchi başlangıç kültürü,Sauerkraut kültürü
+Turşu starter kültürü,Fermente et starter kültürü,Sucuk starter kültürü,Peynir starter kültürü,Yoğurt starter kültürü,Yoğurt kültürü (L. bulgaricus + S. thermophilus),L. rhamnosus + B. lactis karışımı
+Probiyotik karışım 5 suş,Probiyotik karışım 10 suş,Postbiyotik ferment filtratı,İnaktif maya,Autolize maya,Besin mayası,Maya hücre duvarı
+Maya beta glukanı,Bakteriyosin üreten kültür,Nisin üreten kültür,Laktik asit bakterisi kültürü,Propiyonik bakteri kültürü,Peynir yüzey kültürü,Kahverengi küf kültürü
+Starter enzim karışımı,Fermantasyon enzimi karışımı,Lipolitik kültür,Proteolitik kültür,Diacetyl kültürü,Aroma kültürü,CO2 üreten kültür
+Heterofermentatif kültür,Homofermentatif kültür,Probiyotik spor formu,Spor oluşturan probiyotik,Biyo-dönüşüm kültürü,Probiyotik simbiyotik karışım,Symbiotic blend (pre+pro)
+Liyofilize probiyotik,Mikroenkapsüle probiyotik,Bakteri lizatı,Laktik enzim kompleksi,Peynir olgunlaştırma kültürü,Et fermantasyon kültürü,Bitki bazlı yoğurt kültürü
+Vegan probiyotik karışımı,Biyoaktif peptit üretici kültür,Exopolysaccharide üretici kültür,Asetik asit bakterisi,Gluconobacter oxydans,Acetobacter aceti,Laktat tüketici kültür
+Postbiyotik ekstrakt,Enzim üreten Bacillus kültürü,Selülolitik enzim kültürü,Amilolitik enzim kültürü,Proteaz üretici kültür,Lipaz üretici kültür,Pektinaz üretici kültür
+Ksilanaz üretici kültür,Fitaz üretici kültür,Starter karışım (ambalajlı),Fermantasyon karışımı (çok suşlu),Probiyotik matriks (taşıyıcı),Kapsüllenmiş enzim kompleksi,Çok enzimli formülasyon
+Fermente maya ekstresi,Fermente tahıl kültürü,Fermente baklagil kültürü,Fermente sebze kültürü,Fonksiyonel probiyotik konsantre,Endüstriyel enzim premiksi,Biyoaktif kültür kombinasyonu
+Sofra tuzu,Deniz tuzu,Kaya tuzu,İyotlu tuz,Himalaya tuzu,Fleur de sel,Sel gris
+Tuzlu salamura,Salamura suyu,Turşu salamurası,Nitritsiz salamura,Marine tuzu,İnce öğütülmüş tuz,Kristal tuz
+Sirke,Elma sirkesi,Üzüm sirkesi,Beyaz sirke,Balsamik sirke,Pirinç sirkesi,Malt sirkesi
+Hindistan cevizi sirkesi,Şarap sirkesi,Alkol sirkesi,Hazelnut sirkesi,Keçiboynuzu sirkesi,Nar sirkesi,Şalgam sirkesi
+Limon suyu,Limon suyu konsantresi,Lime suyu,Nar ekşisi,Sumak ekstraktı,Sumak tozu,Tamarind püresi
+Hibiskus ekstraktı,Hibiskus tozu,Yaban mersini tozu,Turna yemişi tozu,Üzüm çekirdeği ekstraktı,Yeşil çay ekstraktı,Çay polifenolleri
+Biberiye ekstraktı,Biberiye yağı,Biberiye oleoresin,Kekik yağı,Kekik ekstraktı,Timol,Karvakrol
+Karanfil yağı,Karanfil ekstraktı,Eugenol,Tarçın yağı,Sinemaldehit,Defne yaprağı ekstraktı,Defne yağı
+Adaçayı yağı,Adaçayı ekstraktı,Nane yağı,Spearmint yağı,Mentol,Sarımsak tozu,Sarımsak ekstraktı
+Soğan tozu,Soğan ekstraktı,Zencefil tozu,Zencefil ekstraktı,Zerdeçal tozu,Zerdeçal ekstraktı,Hardal tohumu
+Hardal tozu,Hardal ekstraktı,Yaban turpu tozu,Şalgam ekstraktı,Karabiber yağı,Karabiber ekstraktı,Kişniş yağı
+Kimyon yağı,Rezene yağı,Anason yağı,Yıldız anason ekstraktı,Kakao tozu,Kakao kabuğu ekstraktı,Propolis
+Propolis ekstraktı,Arı reçinesi ekstraktı,Bal,Çiçek balı,Çam balı,Manuka balı,Ham bal
+Pekmez,Üzüm pekmezi,Dut pekmezi,Keçiboynuzu pekmezi,Nişasta şurubu,Şeker,Esmer şeker
+İnvert şeker,Dekstroz,Sorbitol,Gliserol,Bitkisel gliserin,Erithritol,Ksilitol
+Laktik asit bakterisi kültürü,Yoğurt kültürü,Starter kültür,Kefir kültürü,Kombucha kültürü,SCOBY,Laktik asit
+Asetik asit,Sitrik asit,Malik asit,Tartarik asit,Askorbik asit,Fitik asit,Fumarik asit
+Biberiye fenolik fraksiyonu,Oleuropein ekstraktı,Yeşil zeytin polifenolleri,Zeytin yaprağı ekstraktı,Üzüm kabuğu ekstraktı,Nar kabuğu ekstraktı,Ellagik asit kaynağı
+Cranberry ekstraktı,Ahududu çekirdeği ekstraktı,Aronia ekstraktı,Maqui meyve ekstraktı,Açai ekstraktı,Goji berry tozu,Chokeberry ekstraktı
+Liyofilize sarımsak,Liyofilize soğan,Liyofilize zencefil,Preslenmiş zeytin suyu,Biber oleoresin,Paprika oleoresin,Capsicum ekstraktı
+Karanfil tozu,Kekik tozu,Biberiye tozu,Adaçayı tozu,Trüf tuzu,Şarap taneni,Tanen ekstraktı
+Çay tanenleri,Meşe tanenleri,Odun dumanı kondensatı,Sıvı duman,Hickory smoke aroması,Meşe füme aroması,Meşe ekstraktı
+Fermente pirinç ekstresi,Fermente buğday ekstresi,Fermente yulaf ekstresi,Fermente soya ekstresi,Fermente sebze suyu,Laktat tamponu,Sodyum laktat
+Potasyum laktat,Sodyum diasetat (doğal sirke karışımı),Sirke tozu,Limon kabuğu tozu,Portakal kabuğu tozu,Greyfurt kabuğu ekstraktı,Biberiye kapsüllenmiş
+Kapsüllenmiş biberiye,Kapsüllenmiş kekik,Kapsüllenmiş sarımsak,Mikroenkapsüle bal,Mikroenkapsüle asetik asit,Mikroenkapsüle askorbik asit,Bitkisel fenolik karışım
+Polifenol karışımı,Antioksidan bitkisel karışım,Biyoaktif karışım,Natürel koruyucu karışım,Temiz etiket koruyucu,Sosis doğal koruyucu karışımı,Fırıncılık doğal koruyucu karışımı
+Et marinasyon bitkisel karışımı,Tavuk marinasyon karışımı,Şekerleştirilmiş tuz,Şeker-tuz karışımı,Bal-tuz glazesi,Bitkisel tuz karışımı,Aromalı tuz
+Düşük su aktivitesi ajanı,Maya özütü (umami),Hidrolize maya özütü,Maya beta glukanları,Kitosan,Chitosan oligosakkaritleri,Chitin-glukan kompleksi
+Pancar suyu konsantresi,Pancar tozu,Kırmızı pancar ekstraktı,Mor pancar ekstraktı,Betaine renk konsantresi,Böğürtlen suyu konsantresi,Böğürtlen ekstraktı
+Yaban mersini ekstraktı,Yaban mersini suyu tozu,Blueberry ekstraktı,Blackcurrant ekstraktı,Siyah frenk üzümü tozu,Aronia ekstraktı,Aronia suyu konsantresi
+Elderberry ekstraktı,Elderberry suyu tozu,Mürdüm eriği tozu,Maqui berry ekstraktı,Acai tozu,Açai ekstraktı,Goji berry ekstraktı
+Cranberry ekstraktı,Cranberry suyu tozu,Ahududu tozu,Ahududu ekstraktı,Çilek tozu,Çilek ekstraktı,Kiraz suyu konsantresi
+Vișne suyu konsantresi,Kırmızı üzüm kabuğu ekstraktı,Kırmızı üzüm kabuğu tozu,Üzüm çekirdeği ekstraktı,Üzüm posası tozu,Üzüm antosiyaninleri,Antosiyanin karışımı
+Mor havuç ekstraktı,Mor havuç suyu konsantresi,Siyah havuç ekstraktı,Siyah havuç suyu konsantresi,Kırmızı lahana ekstraktı,Kırmızı lahana tozu,Lahana antosiyaninleri
+Kırmızı turp ekstraktı,Mor tatlı patates tozu,Mor tatlı patates ekstraktı,Pitaya tozu,Ejder meyvesi tozu,Pitaya ekstraktı,Domates likopen ekstraktı
+Likopen konsantresi,Domates kabuğu ekstraktı,Domates tozu,Havuç suyu konsantresi,Havuç karotenoid ekstraktı,Havuç beta karoten,Lutein ekstraktı
+Tagetes (marigold) ekstraktı,Lutein-zeaksantin karışımı,Alfa karoten ekstraktı,Beta karoten yağlı süspansiyon,Beta karoten tozu,Spirulina tozu,Spirulina ekstraktı
+Phycocyanin,Phycocyanin ekstraktı,Spirulina phycocyanin,Mavi spirulina,Pigment mavi (phycocyanin),Chlorella tozu,Chlorella ekstraktı
+Klorofil,Klrofilin bakır kompleksi,Klorofilin sodyum bakır tuzu,Klorofil ekstraktı,Isırgan yaprağı tozu,Ispanak tozu,Ispanak ekstraktı
+Maydanoz klorofil ekstraktı,Alfalfa tozu,Matcha tozu,Yeşil çay tozu,Yeşil çay ekstraktı,Kakao tozu,Kakao kabuğu ekstraktı
+Kahve ekstraktı,Kahve tozu,Karob tozu,Keçiboynuzu tozu,Paprika ekstraktı,Paprika oleoresin,Biber oleoresin
+Kapsaisin ekstraktı,Annatto tozu,Annatto ekstraktı,Urukku ekstraktı,Şafran,Safran ekstraktı,Curcumin ekstraktı
+Zerdeçal tozu,Kurkumin tozu,Zerdeçal oleoresin,Kayısı kabuğu ekstraktı,Şeftali kabuğu ekstraktı,Elma kabuğu ekstraktı,Elma posası renk
+Nar suyu konsantresi,Nar kabuğu ekstraktı,Nar antosiyaninleri,Hibiskus ekstraktı,Hibiskus tozu,Ebegümeci ekstraktı,Barbunya kabuğu ekstraktı
+Bakla kabuğu tozu,Soğan kabuğu ekstraktı,Sarımsak kabuğu ekstraktı,Rezene tozu,Anason tozu,Kakao likörü,Kakao mass
+Karamelize şeker,Karamelize şurup,Karamel sınıf I,Karamel sınıf II,Karamel sınıf III,Karamel sınıf IV,Karamel tozu
+Koyu karamel ekstraktı,Maillard renk karışımı,Pişmiş şeker aromalı renk,Malt ekstraktı,Kavrulmuş arpa ekstraktı,Kavrulmuş malt ekstraktı,Malt tozu
+Kırmızı maya pirinci,Monascus kırmızı pigment,Chokeberry ekstraktı,Armut kabuğu ekstraktı,Elma suyu konsantresi,Pancar betasianinleri,Betalain konsantresi
+Gardenya mavisi,Gardenya sarısı,Gardenya yeşili,Safranal zengin ekstrakt,Sarımsı karotenoid miks,Karotenoid kompleks,Karotenoid emülsiyon
+Mikroenkapsüle karotenoid,Karotenoid boncukçuk,Liposomal karotenoid,Bitkisel pigment karışımı,Doğal renk karışımı,Naturel renk sistemi,Temiz etiket renk
+Soya kabuğu ekstraktı,Kakao polifenol ekstraktı,Arpa ot tozu,Buğday çimi tozu,Arpa çimi tozu,Matcha klorofil fraksiyonu,Yeşil alg ekstraktı
+Mavi yeşil alg tozu,Porphyra ekstraktı,Nori tozu,Kelp klorofil fraksiyonu,Ulva ekstraktı,Spirulina kromoprotein,Domates likopen reçinesi
+Sızma zeytinyağı,Rafine zeytinyağı,Filtre zeytinyağı,Early harvest zeytinyağı,Winterize zeytinyağı,Deodorizasyon zeytinyağı,Zeytinyağı posası yağı
+Ayçiçek yağı,Yüksek oleikli ayçiçek yağı,Soğuk pres ayçiçek yağı,Rafine ayçiçek yağı,Ayçiçek oleini,Ayçiçek stearini,Ayçiçek lesitinli yağ
+Mısırözü yağı,Kanola yağı,Yüksek oleikli kanola yağı,Kolza yağı,Soğuk pres kanola yağı,Rafine kanola yağı,Kanola lesitinli yağ
+Soya yağı,Rafine soya yağı,Soğuk pres soya yağı,Interesterifiye soya yağı,Tam hidrojene soya yağı,Kısmen hidrojene soya yağı,Soya lesitinli yağ
+Palm yağı,Palm olein,Palm stearin,Interesterifiye palm yağı,Kırmızı palm yağı,Palm çekirdeği yağı,Fraksiyone palm çekirdeği yağı
+Hindistan cevizi yağı,Fraksiyone hindistan cevizi yağı,RBD hindistan cevizi yağı,MCT yağı,Orta zincir trigliserid yağı,Kaprilik-kaprik trigliserit,DAG yağı
+Kakao yağı,Deodorize kakao yağı,Fraksiyone kakao yağı,Kakao yağı eşleniği (CBE),Kakao yağı ikamesi (CBS),Interesterifiye kakao karışımı,Shea yağı
+Shea stearini,Shea oleini,Mango çekirdeği yağı,Kupaçu yağı,Avokado yağı,Rafine avokado yağı,Soğuk pres avokado yağı
+Üzüm çekirdeği yağı,Susam yağı,Kavrulmuş susam yağı,Kabak çekirdeği yağı,Fındık yağı,Badem yağı,Ceviz yağı
+Pekan cevizi yağı,Macadamia yağı,Pirinç kepeği yağı,De-waxed pirinç kepeği yağı,Aspir yağı,Yüksek oleikli aspir yağı,Fıstık yağı
+Yer fıstığı yağı,Kavrulmuş fıstık yağı,Interesterifiye fıstık yağı,Lesitinli fıstık yağı,Keten tohumu yağı,Chia yağı,Kenevir tohumu yağı
+Camelina yağı,Borage yağı,Evening primrose yağı,Ahududu çekirdeği yağı,Nar çekirdeği yağı,Çilek çekirdeği yağı,Ahududu çekirdek yağı
+Balık yağı,Trigliserid balık yağı,Etil ester balık yağı,Omega-3 konsantre yağ,DHA alg yağı,EPA alg yağı,Alg yağı
+Krill yağı,Fosfolipid omega-3,Pekin ördek yağı,Tavuk yağı,Tereyağı yağı,Ghee,Anhidre süt yağı (AMF)
+Butter oil,Tereyağı konsantresi,Interesterifiye süt yağı,Interesterifiye karışım yağ,Shortening,Margarin bazı,Yağ karışımı
+Bitkisel yağ karışımı,Emülsifiye yağ karışımı,Fonksiyonel lipid karışımı,Fitosterol ile zengin yağ,Fitosterol esterleri,Stanol esterleri,CLA zengin yağ
+Yapılandırılmış lipid,OPO yapılandırılmış yağ,Struktüre trigliserid,Enzimatik interesterifiye yağ,Kriyo-fraksiyone yağ,Winterize yağ,Mikroenkapsüle yağ
+Toz yağ,Mikroenkapsüle balık yağı,Mikroenkapsüle MCT yağı,Liposomal yağ,Liposomal DHA,Yağ taşıyıcı emülsiyon,Emülsiyon baz yağı
+Yüksek stearik yüksek oleik soya yağı (HSO),High oleic high stearic ayçiçek yağı,Interesterifiye laurik karışım,Interesterifiye çoklu karışım,Fraksiyon karışım yağ,Yağ premiksi,Yağ dispersiyonu
+Lesitin,Zayıf fraksiyon lesitin,Deo-lesitin,Kolza lesitini,Güneşçiçek lesitini,Soya lesitini fraksiyonu,Enzim modifiye lesitin
+Fosfolipid konsantresi,Fosfatidilkolin konsantresi,Fosfatidilserin yağı,Fosfatidilinozitol fraksiyonu,Polar lipid fraksiyonu,Nötral lipid fraksiyonu,Yağ çözücü taşıyıcı
+Kafein,Kafein anhidrus,Doğal kafein (çay),Guarana ekstraktı,Yeşil çay kafeini,Yerba mate ekstraktı,Kola fındığı ekstraktı
+Kreatin monohidrat,Kreatin HCl,Kreatin nitrat,Kreatin pirovat,Kreatin sitrat,Buffered kreatin (Kre-Alkalyn),Kreatin magnezyum şelatı
+Kreatin etil ester,Kreatin glukonat,Kreatin orotat,Mikronize kreatin,PH-bağımlı kreatin,Kapsüllenmiş kreatin,Sıvı kreatin formu
+Taurin,Beta-alanin,Karnozin (dipeptit),L-sitrülin,L-sitrülin malat,Malatlı sitrülin 2:1,Sitrülin peptidi
+L-arginin,Arginin alfa-ketoglutarat (AAKG),Arginin nitrata,Nitrosigine (arginin silikat),Agmatin sülfat,L-ornitin,L-ornitin alfa-ketoglutarat
+L-tirozin,N-asetil L-tirozin,L-teanin,L-triptofan,L-fenilalanin,L-histidin,L-lizin
+L-metionin,L-treonin,L-izolösin,L-lösin,L-valin,BCAA karışımı,EAA karışımı
+Esansiyel amino asit karışımı,HMB (beta-HMB),HMB kalsiyum tuzu,HMB serbest asit,Betaine (trimetilglisin),Betaine nitrata,Trimetilglisin
+L-glutamin,Mikronize L-glutamin,Alanyl-L-glutamin (dipeptit),N-asetil L-sistein (NAC),L-sistein,L-sistein HCl,Glisin
+L-prolin,Hidroksiprolin,L-ornitin HCl,L-arginin HCl,L-sitrülin HCl,D-riboz,ATP disodyum
+PeakATP (adenozin trifosfat),ElevATP (fosil bitki ekstraktı),Inozin,NAD+,NADH,Nikotinamid ribozid,NMN (nikotinamid mononükleotid)
+L-karnitin,Asetil L-karnitin,L-karnitin L-tartrat,Propionil L-karnitin,Glikozaminasyon karnitin karışımı,Karnitin fumarat,Karnitin peptidi
+Koenzim Q10,Ubikinol,Alfa lipoik asit,Alfa lipoik asit R formu,Dihidrolipoik asit,PQQ (pirroloquinolin kinon),Resveratrol
+Quercetin,Kersetin glikozit,Epikateşin,Epikateşin zengin kakao,EGCG (epigallokateşin gallat),Yeşil çay kateşinleri,Curcumin fitosom
+Zerdeçal fitosom,Boswellia serrata ekstraktı,Ashwagandha KSM-66,Ashwagandha Sensoril,Ginseng ekstraktı (Panax),Sibirya ginsengi (Eleuthero),Rhodiola rosea ekstraktı
+Cordyceps sinensis ekstraktı,Cordyceps militaris,Lion’s mane ekstraktı,Reishi mantar ekstraktı,Shiitake beta-glukanı,Maitake ekstraktı,Chaga ekstraktı
+Maca kökü tozu,Maca ekstraktı,Fenugreek (çemen) ekstraktı,Saw palmetto ekstraktı,Tribulus terrestris ekstraktı,Ecdysteron (20-hidroksiekdizon),Turkesteron ekstraktı
+Pancar kökü tozu,Pancar nitrat konsantresi,Yeşil yaprak nitrat karışımı,Aronya nitrat karışımı,Klorofil nitrat fraksiyonu,L-ornitin malat,Sodyum sitrat
+Potasyum sitrat,Magnezyum sitrat,Kalsiyum sitrat,Elektrolit karışımı,Çoklu elektrolit tozu,Himalaya tuzu (ergogenik),Deniz tuzu elektrolit
+Fosfat tamponu,Sodyum fosfat yükleme,Potasyum bikarbonat,Sodyum bikarbonat,Bikarbonat tampon karışımı,L-aksiyel tampon sistemi,PH tampon karışımı
+Piperin,BioPerine (piperin),Astragalus ekstraktı,Panax notoginseng ekstraktı,AstraGin karışımı,Karabiber ekstraktı,Zencefil bioenhancer
+Huperzin A,Bakopa monnieri ekstraktı,L-theanine kafein karışımı,Nootropik karışım,N-Asetil L-tirozin kompleks,Nitrik oksit güçlendirici karışım,Pompa formülü karışımı
+Pre-workout kompleks,Intra-workout formül,Post-workout formül,Isotonik içecek karışımı,Hızlı karbonhidrat jel,Fosfokreatin artırıcı kompleks,Glikojen yükleme karışımı
+Karbonhidrat-elektrolit jel,Proteinojenik amino karışımı,Free form amino karışımı,Peptid bağlı lösin,Peptid bağlı arginin,Peptid bağlı sitrülin,Esansiyel yağ asidi kompleksi
+Omega-3 spor formu,Kapsüllenmiş kafein,Yavaş salınımlı kafein,Mikroenkapsüle kreatin,HMB + D vitamini karışımı,Termojenik kompleks,Thermo karışım
+Yağ yakım formülü,L-karnitin kompleks,Kafein+teanin dengesi,Nitratlı performans karışımı,NO booster karışımı,Mitokondriyal destek karışımı,Adaptogen karışımı
+
+
+
+
+
+Glikoz şurubu, İnvert şeker, Yüksek fruktozlu mısır şurubu, Maltodekstrin, Fruktoz, Dekstroz, Laktoz
+Eritritol, Ksilitol, Mannitol, Maltitol, Laktitol, İzomalt, Sorbitol
+Aspartam, Sukraloz, Sakarin, Asesülfam K, Stevia, Neohesperidin DC, Polidextroz
+Ayçiçek lesitini, Soya lesitini, Amonyum fosfatidler, Poligliserol polirisinoleat, Mono- ve digliseridler, DATEM (E472e), SSL (E481)
+Agar agar, Pektin, Ksantan gum, Karajenan, Guar gum, Selüloz (mikrokristalin), Aljinat
+glukoz şurubu,mısır nişastası,kamauba mumu,balmumu,kırmızı pancar suyu konsantresi,gam arabik,spirulina konsantresi
+nişasta,pirinç,kurutulmuş öğütülmüş domates,süt proteini,mineral tuzu(Potasyum),kurutulmuş patates,

@@ -1,187 +1,242 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import '../viewmodels/scan_result_view_model.dart';
-import '../services/ingredient_advanced_match_service.dart';
-import '../models/scan_result_args.dart';
-import '../utils/text_format.dart';
+import '../models/ingredient.dart';
+import '../utils/risk_colors.dart';
+import '../utils/risk_labels.dart';
+import 'ingredient_detail_screen.dart';
 
-class ScanResultScreen extends StatefulWidget {
-  final ScanResultArgs args;
-  const ScanResultScreen({super.key, required this.args});
+class ScanResultScreen extends StatelessWidget {
+  final List<Ingredient> ingredients;
+  final String rawText;
+  final String? imagePath;
+  const ScanResultScreen({
+    super.key,
+    required this.ingredients,
+    required this.rawText,
+    this.imagePath,
+  });
 
-  @override
-  State<ScanResultScreen> createState() => _ScanResultScreenState();
-}
-
-class _ScanResultScreenState extends State<ScanResultScreen>
-    with SingleTickerProviderStateMixin {
-  late ScanResultViewModel vm;
-  late TabController tabController;
-  final tabs = const [
-    Tab(text: 'Hepsi'),
-    Tab(text: 'Kırmızı'),
-    Tab(text: 'Sarı'),
-    Tab(text: 'Yeşil'),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    vm = ScanResultViewModel(service: widget.args.advancedService);
-    vm.addListener(_listener);
-    vm.compute(tokens: widget.args.tokens, phrases: widget.args.phrases);
-    tabController = TabController(length: tabs.length, vsync: this);
-  }
-
-  void _listener() {
-    if (mounted) setState(() {});
-  }
-
-  @override
-  void dispose() {
-    vm.removeListener(_listener);
-    tabController.dispose();
-    super.dispose();
+  // Yeni eşikler
+  String _levelFromScore(int score) {
+    if (score >= 400) return 'red';
+    if (score >= 250) return 'yellow';
+    return 'green';
   }
 
   @override
   Widget build(BuildContext context) {
-    final grouped = vm.groupedByRisk();
+    final cs = Theme.of(context).colorScheme;
+
+    final groups = _groupByRisk(ingredients);
+    final total = ingredients.length;
+    final green = groups['green']!.length;
+    final yellow = groups['yellow']!.length;
+    final red = groups['red']!.length;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tarama Sonuçları'),
-        bottom: TabBar(controller: tabController, tabs: tabs),
-      ),
-      body: TabBarView(
-        controller: tabController,
+      appBar: AppBar(title: const Text('Tarama Sonuçları')),
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(12, 12, 12, 20),
         children: [
-          _buildList(vm.matches),
-          _buildList(grouped['red'] ?? []),
-          _buildList(grouped['yellow'] ?? []),
-          _buildList(grouped['green'] ?? []),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.amber.shade100,
+              border: Border.all(color: Colors.amber.shade300),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.info_outline, color: Colors.black87),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Bu sonuçlar otomatik çıkarımdır; yapay zeka yanılabilir. Lütfen ürün etiketini ve üretici beyanını kontrol ederek doğrulayın.',
+                    style: TextStyle(color: Colors.brown.shade900),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+
+          _SummaryCard(total: total, green: green, yellow: yellow, red: red),
+          const SizedBox(height: 12),
+
+          if ((imagePath ?? '').isNotEmpty)
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.file(
+                File(imagePath!),
+                fit: BoxFit.cover,
+                height: 200,
+                width: double.infinity,
+              ),
+            ),
+          if ((imagePath ?? '').isNotEmpty) const SizedBox(height: 12),
+
+          if (red > 0) _Section(title: 'Yüksek risk', color: riskColorOf('red'), items: groups['red']!),
+          if (yellow > 0) _Section(title: 'Orta risk', color: riskColorOf('yellow'), items: groups['yellow']!),
+          if (green > 0) _Section(title: 'Düşük risk', color: riskColorOf('green'), items: groups['green']!),
+          if (total == 0)
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: cs.surface,
+                border: Border.all(color: cs.outlineVariant),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Text('Hiç malzeme bulunamadı.'),
+            ),
+
+          const SizedBox(height: 16),
+          Theme(
+            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+            child: ExpansionTile(
+              tilePadding: const EdgeInsets.symmetric(horizontal: 8),
+              initiallyExpanded: false,
+              title: const Text('Ham Metin', style: TextStyle(fontWeight: FontWeight.w800)),
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: cs.surface,
+                    border: Border.all(color: cs.outlineVariant),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    rawText,
+                    style: TextStyle(color: cs.onSurfaceVariant),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
-      bottomNavigationBar: _unknownSection(),
     );
   }
 
-  Widget _unknownSection() {
-    if (vm.unknownTokens.isEmpty) return const SizedBox(height: 0);
-    return Container(
-      padding: const EdgeInsets.fromLTRB(16, 10, 16, 14),
+  Map<String, List<Ingredient>> _groupByRisk(List<Ingredient> list) {
+    final m = {
+      'red': <Ingredient>[],
+      'yellow': <Ingredient>[],
+      'green': <Ingredient>[],
+      'other': <Ingredient>[],
+    };
+    for (final i in list) {
+      final score = i.risk.riskScore;
+      final level = _levelFromScore(score);
+      if (level == 'red') m['red']!.add(i);
+      else if (level == 'yellow') m['yellow']!.add(i);
+      else if (level == 'green') m['green']!.add(i);
+      else m['other']!.add(i);
+    }
+    return m;
+  }
+}
+
+class _SummaryCard extends StatelessWidget {
+  final int total;
+  final int green;
+  final int yellow;
+  final int red;
+  const _SummaryCard({required this.total, required this.green, required this.yellow, required this.red});
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    Widget chip(String label, Color color, int count) => Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        border: Border(top: BorderSide(color: Colors.grey.shade300)),
+        color: color.withOpacity(.12),
+        border: Border.all(color: color.withOpacity(.35)),
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Text('$label: $count', style: TextStyle(color: color, fontWeight: FontWeight.w700, fontSize: 12)),
+    );
+
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: cs.surface,
+        border: Border.all(color: cs.outlineVariant),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Eşleşmeyen (${vm.unknownTokens.length})',
-              style:
-                  const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
-          const SizedBox(height: 4),
-          Wrap(
-            spacing: 6,
-            runSpacing: -6,
-            children: vm.unknownTokens
-                .map((t) => Chip(
-                      label: Text(t, style: const TextStyle(fontSize: 11)),
-                      backgroundColor: Colors.grey.shade300,
-                      materialTapTargetSize:
-                          MaterialTapTargetSize.shrinkWrap,
-                    ))
-                .toList(),
+          const Text('Özet', style: TextStyle(fontWeight: FontWeight.w800)),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(child: Text('Toplam: $total', style: const TextStyle(fontWeight: FontWeight.w700))),
+              Wrap(
+                spacing: 8,
+                children: [
+                  chip(riskLabelOf('red'), riskColorOf('red'), red),
+                  chip(riskLabelOf('yellow'), riskColorOf('yellow'), yellow),
+                  chip(riskLabelOf('green'), riskColorOf('green'), green),
+                ],
+              ),
+            ],
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildList(List<AdvancedIngredientMatch> list) {
-    if (list.isEmpty) {
-      return Center(
-        child:
-            Text('Kayıt yok', style: TextStyle(color: Colors.grey.shade600)),
-      );
-    }
-    return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
-      itemCount: list.length,
-      itemBuilder: (_, i) => _matchTile(list[i]),
-    );
-  }
+class _Section extends StatelessWidget {
+  final String title;
+  final Color color;
+  final List<Ingredient> items;
+  const _Section({required this.title, required this.color, required this.items});
 
-  Widget _matchTile(AdvancedIngredientMatch m) {
-    final ing = m.ingredient;
-    final color = _riskColor(ing.risk.riskLevel);
-    return Card(
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: color.withOpacity(.18),
-          child: Text(
-            (ing.risk.riskScore ~/ 100).toString(),
-            style: TextStyle(color: color, fontWeight: FontWeight.bold),
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: color.withOpacity(.35)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: color.withOpacity(.12),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+            ),
+            child: Text(title, style: TextStyle(color: color, fontWeight: FontWeight.w800)),
           ),
-        ),
-        title: Text(prettifyLabel(ing.core.primaryName)),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Skor:${m.score.toStringAsFixed(2)}  Tam:${m.intersectCount}  Fz:${m.fuzzyCount}',
-              style: TextStyle(fontSize: 11, color: Colors.grey.shade700),
-            ),
-            if (m.phraseHits > 0)
-              Text('Phrase x${m.phraseHits}',
-                  style:
-                      TextStyle(fontSize: 10, color: Colors.purple.shade600)),
-            const SizedBox(height: 2),
-            Text(
-              m.matchedTokens.join(', '),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              ing.risk.riskExplanation,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 12),
-            ),
-          ],
-        ),
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-          decoration: BoxDecoration(
-            color: color.withOpacity(.2),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Text(
-            ing.risk.riskLevel.toUpperCase(),
-            style: TextStyle(
-              color: color,
-              fontWeight: FontWeight.w600,
-              fontSize: 11,
-            ),
-          ),
-        ),
-        onTap: () =>
-            Navigator.pushNamed(context, '/detail', arguments: ing),
+          ...items.map((ing) => ListTile(
+                dense: true,
+                title: Text(ing.core.primaryName, maxLines: 1, overflow: TextOverflow.ellipsis),
+                subtitle: Text(ing.core.shortSummary, maxLines: 2, overflow: TextOverflow.ellipsis),
+                trailing: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.12),
+                    border: Border.all(color: color.withOpacity(0.35)),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text(
+                    title,
+                    style: TextStyle(color: color, fontWeight: FontWeight.w700, fontSize: 12),
+                  ),
+                ),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => IngredientDetailScreen(ingredient: ing),
+                )),
+              )),
+        ],
       ),
     );
-  }
-
-  Color _riskColor(String l) {
-    switch (l) {
-      case 'red':
-        return const Color(0xFFD94343);
-      case 'yellow':
-        return const Color(0xFFE8A534);
-      case 'green':
-        return const Color(0xFF24A669);
-      default:
-        return Colors.grey;
-    }
   }
 }

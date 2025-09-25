@@ -1,0 +1,357 @@
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import '../models/ingredient.dart';
+import '../utils/risk_colors.dart';
+import '../utils/risk_labels.dart';
+import '../widgets/ui_components.dart';
+import '../widgets/pretty_section.dart';
+import '../widgets/risk_gauge.dart';
+import '../utils/text_format.dart'; // alt çizgi -> boşluk ve başlık biçimi
+
+class IngredientDetailScreen extends StatelessWidget {
+  final dynamic ingredient;
+  const IngredientDetailScreen({super.key, required this.ingredient});
+
+  Ingredient? get ingSafe => ingredient is Ingredient ? ingredient as Ingredient : null;
+
+  String get _safeName {
+    try {
+      final i = ingSafe;
+      final n = (i?.core.primaryName ?? '').toString().trim();
+      return n.isEmpty ? 'Detay' : n;
+    } catch (_) {
+      return 'Detay';
+    }
+  }
+
+  String _safeStr(dynamic v) => (v ?? '').toString().trim();
+  bool _safeBool(dynamic v) {
+    if (v is bool) return v;
+    if (v is String) {
+      final x = v.toLowerCase();
+      return x == 'true' || x == 'yes' || x == 'evet' || x == '1' || x == 'helal' || x == 'halal';
+    }
+    return false;
+  }
+  int _safeInt(dynamic v) => v is int ? v : (v is double ? v.toInt() : (int.tryParse('$v') ?? 0));
+  double _safeDouble(dynamic v) => v is double ? v : (v is int ? v.toDouble() : (double.tryParse('$v') ?? 0.0));
+  List<String> _listStr(dynamic v) {
+    if (v == null) return const [];
+    if (v is List) return v.map((e) => _safeStr(e)).where((s) => s.isNotEmpty).toList();
+    if (v is String) return _safeStr(v).isEmpty ? const [] : [_safeStr(v)];
+    return const [];
+  }
+
+  // Skordan red/yellow/green
+  String _levelFromScore(int? score) {
+    if (score == null) return 'other';
+    if (score >= 3200) return 'red';
+    if (score >= 2000) return 'yellow';
+    return 'green';
+  }
+
+  // Vegan/Vejetaryen standardizasyonu: Vegan varsa sadece Vegan göster
+  List<String> _dietBadges(bool vegan, bool vegetarian, bool glutenFree, bool lactoseFree, bool kosher, String halal) {
+    final out = <String>[];
+    if (vegan) {
+      out.add('Vegan');
+    } else if (vegetarian) {
+      out.add('Vejetaryen');
+    }
+    if (_isHalalPositive(halal)) out.add('Helal');
+    if (kosher) out.add('Kosher');
+    if (glutenFree) out.add('Glutensiz');
+    if (lactoseFree) out.add('Laktozsuz');
+    return out;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final i = ingSafe;
+    final cs = Theme.of(context).colorScheme;
+
+    // YALNIZCA SKORU KULLAN
+    final score = _safeInt(i?.risk.riskScore);
+    final riskColor = riskColorFromScore(score);
+    final riskText = riskLabelFromScore(score);
+    final riskLevelForGauge = _levelFromScore(score);
+
+    final vegan = _safeBool(i?.dietary.vegan);
+    final vegetarian = _safeBool(i?.dietary.vegetarian);
+    final glutenFree = _safeBool(i?.dietary.glutenFree);
+    final lactoseFree = _safeBool(i?.dietary.lactoseFree);
+    final kosher = _safeBool(i?.dietary.kosher);
+    final halal = _safeStr(i?.dietary.halal);
+
+    final originType = _safeStr(i?.classification.originType).toLowerCase();
+    final isPlantBased = originType == 'bitkisel' || originType.contains('plant');
+
+    final dietBadges = _dietBadges(vegan, vegetarian, glutenFree, lactoseFree, kosher, halal);
+
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: cs.surface,
+            foregroundColor: cs.onSurface,
+            pinned: true,
+            expandedHeight: 200,
+            flexibleSpace: FlexibleSpaceBar(
+              titlePadding: const EdgeInsetsDirectional.only(start: 16, bottom: 14),
+              title: Text(_safeName, maxLines: 1, overflow: TextOverflow.ellipsis),
+              background: _HeaderDecor(
+                gradient1: cs.primaryContainer,
+                gradient2: cs.secondaryContainer,
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+            sliver: SliverList.list(children: [
+              if (_safeStr(i?.core.shortSummary).isNotEmpty)
+                CardBlock(
+                  title: 'Özet',
+                  child: Text(_safeStr(i?.core.shortSummary), style: const TextStyle(fontSize: 15)),
+                ),
+
+              // Önemli etiketler (vegan varsa vejetaryen gösterme)
+              CardBlock(
+                title: 'Önemli Etiketler',
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 6,
+                  children: [
+                    TinyPill(label: riskText, color: riskColor),
+                    if (_safeBool(i?.classification.isAdditive)) const TinyPill(label: 'Katkı', color: Colors.indigo),
+                    if (isPlantBased) const TinyPill(label: 'Bitkisel', color: Colors.teal),
+                    if (_safeStr(i?.identifiers.eNumber).isNotEmpty)
+                      TinyPill(label: 'E-${_safeStr(i?.identifiers.eNumber)}', color: Colors.brown),
+                    for (final b in dietBadges) TinyPill(label: b, color: Colors.teal),
+                  ],
+                ),
+              ),
+
+              if (_safeStr(i?.core.userFriendlySummary).isNotEmpty)
+                PrettySection(
+                  title: 'Detaylı Açıklama',
+                  child: Text(_safeStr(i?.core.userFriendlySummary)),
+                ),
+
+              PrettySection(
+                title: 'Risk',
+                icon: Icons.health_and_safety_outlined,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RiskGauge(score: score, level: riskLevelForGauge), // gauge için seviye skordan
+                    const SizedBox(height: 10),
+                    MetricBar(
+                      label: 'Risk Skoru',
+                      value: _safeDouble(i?.risk.riskScore),
+                      max: 4000,
+                      color: riskColor,
+                      suffix: '${_safeInt(i?.risk.riskScore)}/4000',
+                    ),
+                    const SizedBox(height: 10),
+                    if (_safeStr(i?.risk.riskExplanation).isNotEmpty)
+                      Text(_safeStr(i?.risk.riskExplanation)),
+                    const SizedBox(height: 10),
+                    if (_listStr(i?.risk.riskFactors).isNotEmpty)
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: _listStr(i?.risk.riskFactors)
+                            .map((e) => TinyTag(prettifyLabel(e, titleCase: true)))
+                            .toList(),
+                      ),
+                  ],
+                ),
+              ),
+
+              if (_listStr(i?.health.healthFlags).isNotEmpty || _safeStr(i?.health.safetyNotes).isNotEmpty)
+                PrettySection(
+                  title: 'Sağlık',
+                  icon: Icons.favorite_outline,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (_listStr(i?.health.healthFlags).isNotEmpty)
+                        Wrap(
+                          spacing: 6,
+                          runSpacing: 6,
+                          children: _listStr(i?.health.healthFlags)
+                              .map((e) => TinyTag(prettifyLabel(e, titleCase: true)))
+                              .toList(),
+                        ),
+                      if (_safeStr(i?.health.safetyNotes).isNotEmpty) ...[
+                        const SizedBox(height: 8),
+                        Text(_safeStr(i?.health.safetyNotes)),
+                      ],
+                    ],
+                  ),
+                ),
+
+              if (_listStr(i?.allergen.allergenFlags).isNotEmpty || _safeStr(i?.allergen.note).isNotEmpty)
+                PrettySection(
+                  title: 'Alerjen',
+                  icon: Icons.warning_amber_rounded,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (_listStr(i?.allergen.allergenFlags).isNotEmpty)
+                        Wrap(
+                          spacing: 6,
+                          runSpacing: 6,
+                          children: _listStr(i?.allergen.allergenFlags)
+                              .map((e) => TinyTag(prettifyLabel(e, titleCase: true)))
+                              .toList(),
+                        ),
+                      if (_safeStr(i?.allergen.note).isNotEmpty) ...[
+                        const SizedBox(height: 8),
+                        Text(_safeStr(i?.allergen.note)),
+                      ],
+                    ],
+                  ),
+                ),
+
+              PrettySection(
+                title: 'Diyet',
+                icon: Icons.restaurant_outlined,
+                child: Wrap(
+                  spacing: 6,
+                  runSpacing: 6,
+                  children: [
+                    for (final b in dietBadges) TinyTag(b),
+                  ],
+                ),
+              ),
+
+              if (_listStr(i?.usage.whereUsed).isNotEmpty || _listStr(i?.usage.commonRoles).isNotEmpty)
+                PrettySection(
+                  title: 'Kullanım',
+                  icon: Icons.tips_and_updates_outlined,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (_listStr(i?.usage.whereUsed).isNotEmpty) ...[
+                        const Text('Nerede Kullanılır?', style: TextStyle(fontWeight: FontWeight.w700)),
+                        const SizedBox(height: 6),
+                        Wrap(
+                          spacing: 6,
+                          runSpacing: 6,
+                          children: _listStr(i?.usage.whereUsed)
+                              .map((e) => TinyTag(prettifyLabel(e, titleCase: true)))
+                              .toList(),
+                        ),
+                      ],
+                      if (_listStr(i?.usage.whereUsed).isNotEmpty && _listStr(i?.usage.commonRoles).isNotEmpty)
+                        const SizedBox(height: 10),
+                      if (_listStr(i?.usage.commonRoles).isNotEmpty) ...[
+                        const Text('Roller', style: TextStyle(fontWeight: FontWeight.w700)),
+                        const SizedBox(height: 6),
+                        Wrap(
+                          spacing: 6,
+                          runSpacing: 6,
+                          children: _listStr(i?.usage.commonRoles)
+                              .map((e) => TinyTag(prettifyLabel(e, titleCase: true)))
+                              .toList(),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+
+              if (_safeStr(i?.regulatory.trStatus).isNotEmpty ||
+                  _safeStr(i?.regulatory.euStatus).isNotEmpty ||
+                  _safeStr(i?.regulatory.usStatus).isNotEmpty ||
+                  i?.regulatory.adiMgPerKgBw != null)
+                PrettySection(
+                  title: 'Regülasyon',
+                  icon: Icons.gavel_outlined,
+                  child: Column(
+                    children: [
+                      KVRow(label: 'TR', value: _dashIfEmpty(_safeStr(i?.regulatory.trStatus))),
+                      KVRow(label: 'EU', value: _dashIfEmpty(_safeStr(i?.regulatory.euStatus))),
+                      KVRow(label: 'US', value: _dashIfEmpty(_safeStr(i?.regulatory.usStatus))),
+                      KVRow(label: 'ADI (mg/kg bw)', value: (i?.regulatory.adiMgPerKgBw?.toString() ?? '-')),
+                    ],
+                  ),
+                ),
+
+              if (_listStr(i?.sources).isNotEmpty)
+                PrettySection(
+                  title: 'Kaynaklar',
+                  icon: Icons.link_outlined,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _srcList(i?.sources)
+                        .map((s) => SourceTile(name: s.name, url: s.url, note: s.note))
+                        .toList(),
+                  ),
+                ),
+            ]),
+          ),
+        ],
+      ),
+    );
+  }
+
+  bool _isHalalPositive(String v) {
+    final x = v.toLowerCase();
+    return x == 'helal' || x == 'halal' || x == 'yes' || x == 'true' || x == 'evet';
+  }
+
+  String _dashIfEmpty(String s) => s.isEmpty ? '-' : s;
+}
+
+class _HeaderDecor extends StatelessWidget {
+  final Color gradient1;
+  final Color gradient2;
+  const _HeaderDecor({
+    required this.gradient1,
+    required this.gradient2,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [gradient1, gradient2],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+    );
+  }
+}
+
+class _Src {
+  final String name;
+  final String? url;
+  final String? note;
+  _Src({required this.name, this.url, this.note});
+}
+
+List<_Src> _srcList(dynamic v) {
+  final out = <_Src>[];
+  if (v is List) {
+    for (final e in v) {
+      if (e is Map) {
+        final name = (e['name'] ?? '').toString().trim();
+        final url = (e['url'] ?? '').toString().trim();
+        final note = (e['note'] ?? '').toString().trim();
+        if (name.isNotEmpty) out.add(_Src(name: name, url: url.isEmpty ? null : url, note: note.isEmpty ? null : note));
+      } else {
+        try {
+          final dyn = e as dynamic;
+          final name = (dyn.name ?? '').toString().trim();
+          final url = (dyn.url ?? '').toString().trim();
+          final note = (dyn.note ?? '').toString().trim();
+          if (name.isNotEmpty) out.add(_Src(name: name, url: url.isEmpty ? null : url, note: note.isEmpty ? null : note));
+        } catch (_) {}
+      }
+    }
+  }
+  return out;
+}

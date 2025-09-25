@@ -48,7 +48,7 @@ class SimpleIngredientMatcher {
   }
 
   void _build() {
-    for (int ingIdx=0; ingIdx<_ingredients.length; ingIdx++) {
+    for (int ingIdx = 0; ingIdx < _ingredients.length; ingIdx++) {
       final ing = _ingredients[ingIdx];
       final primRaw = (ing.core.primaryName ?? '').trim();
       if (primRaw.isEmpty) continue;
@@ -56,7 +56,7 @@ class SimpleIngredientMatcher {
       final phraseSet = <String>{};
       phraseSet.add(primRaw);
 
-      ing.core.names.forEach((k,v){
+      ing.core.names.forEach((k, v) {
         if (v is String) phraseSet.add(v);
         else if (v is List) {
           for (final s in v) {
@@ -115,7 +115,7 @@ class SimpleIngredientMatcher {
     }
 
     final list = bestMap.values.toList()
-      ..sort((a,b){
+      ..sort((a, b) {
         final s = b.score.compareTo(a.score);
         if (s != 0) return s;
         return b.intersection.compareTo(a.intersection);
@@ -129,7 +129,7 @@ class SimpleIngredientMatcher {
       {double minScore = 0.30}) {
     if (!_built || tokens.isEmpty) return const [];
 
-    final lowerTokens = tokens.map((e)=> e.toLowerCase()).toSet();
+    final lowerTokens = tokens.map((e) => e.toLowerCase()).toSet();
     final asciiTokens = lowerTokens.map(SimpleNormalize.lowerAscii).toSet();
     final unionTokens = {...lowerTokens, ...asciiTokens};
 
@@ -158,7 +158,7 @@ class SimpleIngredientMatcher {
 
       results.add(SimpleIngredientMatch(
         ingredient: entry.ingredient,
-        score: score.clamp(0,1),
+        score: score.clamp(0, 1),
         intersection: inter.length,
         exact: false,
         matchedSegment: 'live',
@@ -166,8 +166,7 @@ class SimpleIngredientMatcher {
       ));
     });
 
-    // Aynı ingredient (birden fazla index yok zaten) – yinele yok.
-    results.sort((a,b){
+    results.sort((a, b) {
       final s = b.score.compareTo(a.score);
       if (s != 0) return s;
       return b.intersection.compareTo(a.intersection);
@@ -187,7 +186,7 @@ class SimpleIngredientMatcher {
 
     Ingredient? exactIng = _phraseMap[segLower] ?? _phraseMap[segAscii];
 
-    final segTokensLower = SimpleNormalize.tokenize(segLower).map((e)=> e.toLowerCase()).toList();
+    final segTokensLower = SimpleNormalize.tokenize(segLower).map((e) => e.toLowerCase()).toList();
     final segTokensAscii = segTokensLower.map(SimpleNormalize.lowerAscii).toList();
     final segTokenSet = {...segTokensLower, ...segTokensAscii};
 
@@ -195,33 +194,44 @@ class SimpleIngredientMatcher {
 
     for (final idx in _indexed) {
       bool exact = false;
-      if (exactIng != null && idx.ingredient == exactIng) {
-        exact = true;
-      } else {
-        final prim = (idx.ingredient.core.primaryName ?? '').toLowerCase();
-        if (prim.isNotEmpty) {
-          if (segLower.contains(prim)) {
-            exact = true;
-          } else {
-            final primAscii = SimpleNormalize.lowerAscii(prim);
-            if (segAscii.contains(primAscii)) {
-              exact = true;
-            }
-          }
+      bool exactPrimary = false;
+
+      // Primary karşılaştırması
+      final prim = (idx.ingredient.core.primaryName ?? '').toLowerCase().trim();
+      if (prim.isNotEmpty) {
+        final primAscii = SimpleNormalize.lowerAscii(prim);
+        if (segLower.contains(prim) || segAscii.contains(primAscii)) {
+          exact = true;
+          exactPrimary = true;
         }
+      }
+
+      // Eğer primary değilse ama exactIng bu ingredient ise (muhtemelen synonym)
+      if (!exactPrimary && exactIng != null && idx.ingredient == exactIng) {
+        exact = true;
       }
 
       final inter = idx.tokens.intersection(segTokenSet);
       if (inter.isEmpty && !exact) continue;
 
       final base = exact ? 1.0 : inter.length / max(1, idx.tokens.length);
-      final boost = exact ? 0.30 : (inter.length >= 3 ? 0.15 : 0.0);
+
+      // Önceliklendirme: primary exact > synonym exact > çoklu token
+      double boost;
+      if (exactPrimary) {
+        boost = 0.35;
+      } else if (exact) {
+        boost = 0.25;
+      } else {
+        boost = inter.length >= 3 ? 0.15 : 0.0;
+      }
+
       final score = (base + boost).clamp(0, 1).toDouble();
 
       if (score >= minScore) {
         final match = SimpleIngredientMatch(
           ingredient: idx.ingredient,
-            score: score,
+          score: score,
           intersection: inter.length,
           exact: exact,
           matchedSegment: segNorm,
@@ -254,8 +264,8 @@ class SimpleIngredientMatcher {
         .replaceAll('·', ',');
     final parts = raw.split(RegExp(r'[;,]'));
     return parts
-        .map((p)=> p.trim())
-        .where((p)=> p.isNotEmpty && p.length > 1)
+        .map((p) => p.trim())
+        .where((p) => p.isNotEmpty && p.length > 1)
         .toList();
   }
 }

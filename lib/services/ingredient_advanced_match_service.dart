@@ -109,7 +109,16 @@ class AdvancedIngredientMatchService {
     for (final w in ing.usage.whereUsed) addRaw(w);
     for (final r in ing.usage.commonRoles) addRaw(r);
     for (final h in ing.health.healthFlags) addRaw(h);
-    for (final rf in ing.risk.riskFactors) addRaw(rf);
+    for (final rf in ing.risk.riskFactors) {
+      if (rf is String) addRaw(rf);
+      else if (rf is Map) {
+        addRaw(rf['title']?.toString());
+        addRaw(rf['condition']?.toString());
+        addRaw(rf['mechanism']?.toString());
+        addRaw(rf['evidence']?.toString());
+        addRaw(rf['mitigation']?.toString());
+      }
+    }
     return set;
   }
 

@@ -1,24 +1,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- 📌 Kamera ve dosya erişim izinleri -->
+    <!-- İzinler -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <!-- API 33+ için galeri okuma -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <!-- Eski cihazlar için -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <!-- WRITE: artık deprecated ama eski cihazlar için, çakışmayı önlemek için tools:replace -->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="29"
         tools:replace="android:maxSdkVersion" />
 
+    <!-- Cihazda kamera olmayabilir; requirement=false yap -->
+    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
     <application
-        android:label="mlkit"
+        android:label="Etiscan"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -44,12 +44,14 @@
             android:value="2" />
     </application>
 
-    <!-- 📌 Metin işleme için gerekli sorgu izni -->
+    <!-- Android 11+ package visibility: kamera ve galeri intent'lerini görünür yap -->
     <queries>
         <intent>
-            <action android:name="android.intent.action.PROCESS_TEXT" />
-            <data android:mimeType="text/plain" />
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+            <data android:mimeType="image/*" />
         </intent>
     </queries>
-
 </manifest>

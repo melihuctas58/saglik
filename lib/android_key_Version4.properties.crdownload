@@ -1,0 +1,5 @@
+storePassword=BURAYA_STORE_SIFRESI
+keyPassword=BURAYA_KEY_SIFRESI
+keyAlias=upload
+# Windows'ta çift ters slash veya forward slash kullan
+storeFile=C:\\Users\\melih\\upload-keystore.jks

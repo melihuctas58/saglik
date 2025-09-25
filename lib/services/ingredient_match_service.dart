@@ -33,7 +33,7 @@ class IngredientMatchService {
   final List<_IndexedIngredient> _index = [];
   bool _built = false;
 
-  /// Stop/noise kelimeler (geri dökülmesini istemediğimiz)
+  /// Stop/noise kelimeler
   static const Set<String> _noise = {
     've', 'veya', 'ile', 'vb', 'gibi', 'içerir', 'içeren', 'içinde',
     'içindedir', 'içindekiler', 'ingredients', 'for', 'the', 'of', 'in',
@@ -52,7 +52,7 @@ class IngredientMatchService {
         if (norm.isEmpty) return;
         for (final tk in norm.split(' ')) {
           if (tk.length < 3) continue;
-            if (_noise.contains(tk)) continue;
+          if (_noise.contains(tk)) continue;
           tokens.add(tk);
         }
       }
@@ -73,7 +73,17 @@ class IngredientMatchService {
       for (final w in ing.usage.whereUsed) add(w);
       for (final r in ing.usage.commonRoles) add(r);
       for (final h in ing.health.healthFlags) add(h);
-      for (final rf in ing.risk.riskFactors) add(rf);
+      // risk_factors: string/map destekle
+      for (final rf in ing.risk.riskFactors) {
+        if (rf is String) add(rf);
+        else if (rf is Map) {
+          add(rf['title']?.toString());
+          add(rf['condition']?.toString());
+          add(rf['mechanism']?.toString());
+          add(rf['evidence']?.toString());
+          add(rf['mitigation']?.toString());
+        }
+      }
 
       if (tokens.isNotEmpty) {
         _index.add(_IndexedIngredient(ingredient: ing, tokens: tokens));
@@ -82,8 +92,8 @@ class IngredientMatchService {
     _built = true;
   }
 
-  /// tokens: taramadan gelen normalize tek kelimelik token listesi
-  /// phrases: “içindekiler” listesinden çıkarılan çok kelimeli ham ifadeler
+  /// tokens: normalize tek kelimelik token listesi
+  /// phrases: çok kelimeli ham ifadeler
   List<IngredientMatch> match({
     required List<String> tokens,
     required List<String> phrases,
@@ -121,14 +131,13 @@ class IngredientMatchService {
         }
       }
 
-      // Intersection yoğunluğu: intersect / min(tokensInIngredient, tokensFromQuery)
+      // Intersection yoğunluğu
       final denseScore = intersect.length /
           (entry.tokens.length < tokenSet.length
               ? entry.tokens.length
-              : tokenSet.length)
-          ;
+              : tokenSet.length);
 
-      // Nihai skor ağırlık
+      // Nihai skor
       final score =
           (baseJaccard * 0.5) + (denseScore * 0.35) + phraseBonus;
 
